@@ -20,7 +20,7 @@ class LoginC
 
     public function loginUser()
     {
-        // Utilisation de la méthode héritée
+        
         $user=new LoginM();
         $user ->getUser( $this->email, $this->password);
 
