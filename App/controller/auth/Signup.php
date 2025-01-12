@@ -39,7 +39,7 @@ class Signup
             header("location: ../../view/auth/signUp.php?error=invalidemail");
             exit();
         }
-        if($this->checkUserExiste()==false)
+        if(!Validation::checkUser( $this->nom,$this->email))
         {
             // echo "Username or email taken !";
             header("location: ../../view/auth/signUp.php?error=UsernameOrEmailTaken");
@@ -66,17 +66,5 @@ class Signup
         }
         return $result;
     }
-    private function checkUserExiste()
-    {
-        $result;
-        if(!Validation::checkUser( $this->nom,$this->email))
-        {
-            $result=false;
-        }
-        else
-        {
-            $result=true;
-        }
-        return $result;
-    }
+    
 }

@@ -16,7 +16,7 @@ if(isset($_POST["submit"]))
     $signup->signupUser();
 
     // Retour à la page d'accueil
-    header ("location: signUP.php?erHGFGFGFror=none");}
+    header ("location: logIn.php?erHGFGFGFror=none");}
 ?>
 
 
