@@ -29,10 +29,10 @@ class Connexion
             return self::$conn;
 
         }
-        // else
-        // {
-        //     return self::$conn;
-        // }
+        else
+        {
+            return self::$conn;
+        }
 
     }
 
