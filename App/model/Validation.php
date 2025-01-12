@@ -1,4 +1,8 @@
 <?php 
+namespace App\model;
+require __DIR__ . '/../../vendor/autoload.php';
+use App\Config\Connexion;
+use PDO;
 class Validation
 {
 
@@ -44,7 +48,7 @@ class Validation
         return $result;
     }
     
-    protected function checkUser($name,$email)
+   static function checkUser($name,$email)
     {
         $conn = Connexion::connexion();
         $sql="SELECT name FROM  users WHERE name=? OR email=?;";
@@ -53,7 +57,7 @@ class Validation
         if(!$stmt->execute(array($name,$email)))
         {
             $stmt=null;
-            header("location: ../public/index.php?error=stmtfailed");
+            header("location: ../view/auth/signUp.php?error=stmtfailed");
             exit();
         }
         $resultCheck;

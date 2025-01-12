@@ -3,7 +3,8 @@ namespace App\controller\auth;
 require __DIR__ . '/../../../vendor/autoload.php'; 
 use App\class\User; 
 use App\class\Role; 
-
+use App\model\Crud;
+use App\model\Validation;
 
 class Signup
 {
@@ -11,7 +12,7 @@ class Signup
     protected $nom ;
     protected $email;
     protected $password ; 
-    public function __construct($idRole,$password,$nom,$email)
+    public function __construct($idRole,$nom,$email,$password)
     {
         $this->idRole=$idRole;
         $this->nom=$nom;
@@ -23,45 +24,39 @@ class Signup
         if($this->emptyInput()==false)
         {
             // echo "empty input !";
-            header("location: ../public/index.php?error=emptyInput");
+            header("location: ../../view/auth/signUp.php?error=emptyInput");
             exit();
         }
-        if(Validation::validationUsername($this->uid)==false)
+        if(Validation::validationUsername($this->nom)==false)
         {
             // echo "invalid name !";
-            header("location: ../public/index.php?error=invaldname");
+            header("location: ../../view/auth/signUp.php?error=invaldname");
             exit();
         }
         if(Validation::validationEmail($this->email)==false)
         {
             // echo "invalid email !";
-            header("location: ../public/index.php?error=invalidemail");
+            header("location: ../../view/auth/signUp.php?error=invalidemail");
             exit();
         }
-        if(Validation::passwordMatch($this->pwd,$this->pwdReapeat)==false)
-        {
-            // echo "Passworde don't match !";
-            header("location: ../public/index.php?error=PasswordDontMatch");
-            exit();
-        }
-        if($this->uidTakenCheck()==false)
+        if($this->checkUserExiste()==false)
         {
             // echo "Username or email taken !";
-            header("location: ../public/index.php?error=UsernameOrEmailTaken");
+            header("location: ../../view/auth/signUp.php?error=UsernameOrEmailTaken");
             exit();
         }
         $role= new Role($this->idRole);
-
-        $user= new User($this->nom,$this->email,$this->password,$role);
+        $hashedPwd= password_hash($this->password,PASSWORD_DEFAULT);
+        $user= new User($this->nom,$this->email,$hashedPwd,$role);
         $user->inscription ();
-        $this-> setUser($this->uid,$this->pwd,$this->email);
+       
 
 
     }
     private function emptyInput()
     {
         $result;
-        if(empty( $this->idRole)||empty($this->nom)||empty( $this->password)||empty($this->email))
+        if(empty($this->idRole)||empty($this->nom)||empty($this->password)||empty($this->email))
         {
             $result=false;
         }
@@ -71,10 +66,10 @@ class Signup
         }
         return $result;
     }
-    private function uidTakenCheck()
+    private function checkUserExiste()
     {
         $result;
-        if(!$this-> checkUser( $this->nom,$this->email))
+        if(!Validation::checkUser( $this->nom,$this->email))
         {
             $result=false;
         }

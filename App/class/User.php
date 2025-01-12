@@ -1,12 +1,12 @@
 <?php
-namespace App\classes;
+namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php'; 
 
-use App\Classes\Role; 
+use App\Class\Role; 
 use App\model\Crud;
 use App\Config\Connexion;
 
-class Utilisateur
+class User
 {
     protected $id;
     protected $nom ;
