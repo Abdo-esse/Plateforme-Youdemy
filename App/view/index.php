@@ -137,16 +137,13 @@
               href="index.html">Home</a>
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="pages/products.html">Products</a>
-            <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="pages/favourits.html">Favouvirts</a>
+              href="pages/products.html">Cours</a>
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
               href="#">About</a>
           </div>
 
-          <div class="flex justify-center md:block">
+          <!-- <div class="flex justify-center md:block">
             <a
               class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300  "
               href="pages/checkout.html">
@@ -165,7 +162,18 @@
                 >0</span>
 
             </a>
-          </div>
+          </div> -->
+     
+      <div>
+        <a href="#">
+      <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log In</button>
+        </a>
+        <a href="#">
+        <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
+
+        </a>
+
+      </div>
         </div>
       </div>
     </nav>
