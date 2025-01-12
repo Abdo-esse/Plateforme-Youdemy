@@ -16,7 +16,7 @@ class LoginM
 
 {
     
-    protected function getUser($email, $password)
+   public function getUser($email, $password)
 {
   
         $conn = Connexion::connexion();
@@ -24,7 +24,7 @@ class LoginM
         
         $stmt = $conn->prepare('SELECT users.id, users.email, users.name, users.password, roles.id as role_id, roles.name as role
                                 FROM users 
-                                JOIN roles ON roles.id = users.id_role 
+                                JOIN roles ON roles.id = users.idRole 
                                 WHERE users.email = ?;');
 
         if (!$stmt->execute([$email])) {
@@ -55,7 +55,7 @@ class LoginM
 
         
         $role = new Role($user["role_id"], $user["role"]);
-        return new Utilisateur($user["name"], $user["email"], $user["password"], $role, $user["id"]);
+        return new User($user["name"], $user["email"], $user["password"], $role, $user["id"]);
 
     
 }
