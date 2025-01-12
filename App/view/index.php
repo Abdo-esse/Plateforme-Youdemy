@@ -1,3 +1,11 @@
+<?php
+require __DIR__ . '/../../vendor/autoload.php';  
+ echo"hadi 1";
+ use App\Config\Connexion;
+ Connexion::connexion();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
