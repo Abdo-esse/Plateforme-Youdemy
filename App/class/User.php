@@ -28,7 +28,7 @@ class Utilisateur
             "name" => "$this->nom",
             "email" => "$this->email",
             "password" => "$this->password",
-            "id_role" => $this->role->getId() 
+            "idRole" => $this->role->getId() 
         ];
     }
 
