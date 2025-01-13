@@ -1,6 +1,7 @@
 <?php 
 namespace App\class;
-use App\Classes\User;
+require __DIR__ . '/../../vendor/autoload.php'; 
+
 
 
 class Etudiant extends User

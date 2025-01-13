@@ -40,6 +40,10 @@ class LoginM
             header("location: ../view/auth/logIn.php?error=usernotfound");
             exit();
         }
+        if ($user["compteStatut"];) {
+            header("location: ../view/auth/logIn.php?error=usernotfound");
+            exit();
+        }
 
      
         if (!password_verify($password, $user['password'])) {

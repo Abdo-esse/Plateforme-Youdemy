@@ -13,8 +13,14 @@ use  Youdemy;
     `password`  VARCHAR(250),
     idRole int ,
     dateCreation date DEFAULT current_timestamp(),
-    isActive BOOLEAN DEFAULT false,
+    compteStatut ENUM('actif', 'suspendu', 'supprimé') DEFAULT 'actif',
     photo VARCHAR(250),
     FOREIGN KEY (idRole) REFERENCES roles(id) ON DELETE CASCADE ON UPDATE CASCADE
  );
- 
+ drop TABLE users;
+ CREATE TABLE gestionEnseignants (
+    idEnseignant INT ,
+    etatCompte ENUM('en cours', 'accepter', 'refuser') NOT NULL DEFAULT 'en cours',
+    dateDecision date ,
+    Foreign Key (idEnseignant) REFERENCES users(id)
+);

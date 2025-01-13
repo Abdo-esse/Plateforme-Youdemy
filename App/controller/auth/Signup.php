@@ -3,6 +3,8 @@ namespace App\controller\auth;
 require __DIR__ . '/../../../vendor/autoload.php'; 
 use App\class\User; 
 use App\class\Role; 
+use App\class\Enseignant; 
+use App\class\Etudiant; 
 use App\model\Crud;
 use App\model\Validation;
 
@@ -48,28 +50,22 @@ class Signup
         $role= new Role($this->idRole);
         $hashedPwd= password_hash($this->password,PASSWORD_DEFAULT);
 
-        echo '<br>';
+        
 
        
         if ($role->getId()==2) {
-            echo $role->getId();
-            echo 'rah ensignant';
+            $enseignant=new Enseignant($this->nom,$this->email,$hashedPwd,$role);
+            $enseignant->inscription ();
         }
-        echo '<br>';
-
-
-        $user= new User($this->nom,$this->email,$hashedPwd,$role);
-        echo '<br>';
-        print_r($user);
-        // $user->inscription ();
-       
-
-
+        else if ($role->getId()==3) {
+            $etudiant=new Etudiant($this->nom,$this->email,$hashedPwd,$role);
+            $etudiant->inscription ();
+        }
     }
     private function emptyInput()
     {
         $result;
-        if(empty($this->idRole)||empty($this->nom)||empty($this->password)||empty($this->email))
+        if(empty($this->idRole) && empty($this->nom) && empty($this->password) && empty($this->email))
         {
             $result=false;
         }
