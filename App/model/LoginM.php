@@ -26,20 +26,26 @@ class LoginM
                                 WHERE users.email = ?;');
 
         if (!$stmt->execute([$email])) {
-            header("location: ../view/auth/logIn.php");
+            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
          $user = $stmt->fetch(PDO::FETCH_ASSOC);
          if (!$user) {
-            header("location: ../view/auth/logIn.php?error=usernotfound");
+            $_SESSION["errorGenerale"] = "User not found check your email or you password!";
+
+            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
         if ($user["compteStatut"]!=='actif') {
-            header("location: ../view/auth/logIn.php?error=ypurCountnotactive");
+            // User not found, please check your credentials.
+            $_SESSION["errorGenerale"] = "Your account not active !";
+            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
         if (!password_verify($password, $user['password'])) {
-            header("location: ../view/auth/logIn.php?error=wrongpassword");
+            $_SESSION["errorGenerale"] = "Your password not correcte !";
+
+            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
 
@@ -54,7 +60,9 @@ class LoginM
           return  new Enseignant($user["name"], $user["email"], $user["password"], $role,$enseignantDonner->etatCompte, $user["id"]);
               
            }else {
-            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php?error=yourCountnotactif");
+            $_SESSION["errorGenerale"] = "Your account is $enseignantDonner->etatCompte !";
+
+            header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
         }

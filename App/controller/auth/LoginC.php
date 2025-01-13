@@ -24,22 +24,25 @@ class LoginC
        
 
         if ($user == null) {
-            echo "User not found, please check your credentials.";
+            // echo "User not found, please check your credentials.";
+            $_SESSION["erroremail"] = "User not found, please check your credentials. !";
+            header("Location:../../View/auth/login.php");
+
             exit();
         }
            // Vérification du rôle
         switch ($_SESSION["userrole"]) {
             case "Administrateur":
-                header("Location:../../View/admin/dashbord.php?natadmin");
+                header("Location:../../View/admin/dashbord.php");
                 break;
             case "Enseignant":
-                header("Location:../../View/enseignant/dashbord.php?ntacandidate");
+                header("Location:../../View/enseignant/dashbord.php");
                 break;
             case "Etudiant":
-                header("Location:../../View/etudiant/index.php?recruiter");
+                header("Location:../../View/etudiant/index.php");
                 break;
             default:
-                header("Location:../../View/auth/login.php?error=unknownrole");
+                header("Location:../../View/auth/login.php");
         }
         exit();
     }

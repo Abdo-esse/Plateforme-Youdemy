@@ -66,7 +66,7 @@ if(isset($_POST["submit"]))
         <h2 class="text-2xl font-bold text-center mb-4">Formulaire</h2>
         <?php
     if (isset($_SESSION['errorGenerale'])) {
-        echo '<div class="error-message">' . $_SESSION['errorGenerale'] . '</div>';
+        echo '<div class="text-red-600 error-message">' . $_SESSION['errorGenerale'] . '</div>';
         unset($_SESSION['errorGenerale']); 
     }
     ?>
@@ -76,8 +76,8 @@ if(isset($_POST["submit"]))
       <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Full Name</label>
   </div>
   <?php
-    if (isset($_SESSION['errorGenerale'])) {
-        echo '<div class="error-message">' . $_SESSION["errorname"] . '</div>';
+    if (isset($_SESSION['errorname'])) {
+        echo '<div class="text-red-600 error-message">' . $_SESSION["errorname"] . '</div>';
         unset($_SESSION['errorname']); 
     }
     ?>
@@ -86,8 +86,8 @@ if(isset($_POST["submit"]))
       <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
   </div>
   <?php
-    if (isset($_SESSION['errorGenerale'])) {
-        echo '<div class="error-message">' . $_SESSION["erroremail"] . '</div>';
+    if (isset($_SESSION['erroremail'])) {
+        echo '<div class="text-red-600 error-message">' . $_SESSION["erroremail"] . '</div>';
         unset($_SESSION['erroremail']); 
     }
     ?>
@@ -98,7 +98,7 @@ if(isset($_POST["submit"]))
   </div>
   <?php
     if (isset($_SESSION['errorGenerale'])) {
-        echo '<div class="error-message">' . $_SESSION['errorGenerale'] . '</div>';
+        echo '<div class="text-red-600 error-message">' . $_SESSION['errorGenerale'] . '</div>';
         unset($_SESSION['errorGenerale']); 
     }
     ?>
