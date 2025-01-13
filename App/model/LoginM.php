@@ -66,6 +66,8 @@ class LoginM
             exit();
         }
         }
+
+        return new User($user["name"], $user["email"], $user["password"], $role, $user["id"]);
        
         
 
