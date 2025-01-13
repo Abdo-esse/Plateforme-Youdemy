@@ -47,8 +47,21 @@ class Signup
         }
         $role= new Role($this->idRole);
         $hashedPwd= password_hash($this->password,PASSWORD_DEFAULT);
+
+        echo '<br>';
+
+       
+        if ($role->getId()==2) {
+            echo $role->getId();
+            echo 'rah ensignant';
+        }
+        echo '<br>';
+
+
         $user= new User($this->nom,$this->email,$hashedPwd,$role);
-        $user->inscription ();
+        echo '<br>';
+        print_r($user);
+        // $user->inscription ();
        
 
 
