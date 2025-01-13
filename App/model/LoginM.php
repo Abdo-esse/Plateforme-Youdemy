@@ -1,14 +1,13 @@
 <?php 
 namespace App\model;
-
-
-
+session_start();
 require __DIR__ . '/../../vendor/autoload.php';
 use App\Config\Connexion;
 use App\Class\Role; 
 use App\Class\User; 
 use App\Class\Enseignant; 
 use PDO;
+
 
 
 
@@ -21,23 +20,17 @@ class LoginM
 {
   
         $conn = Connexion::connexion();
-        
-        
         $stmt = $conn->prepare('SELECT users.id,users.compteStatut, users.email, users.name, users.password, roles.id as role_id, roles.name as role
                                 FROM users 
                                 JOIN roles ON roles.id = users.idRole 
                                 WHERE users.email = ?;');
 
         if (!$stmt->execute([$email])) {
-            header("location: ../view/auth/logIn.php?error=stmtfaile");
+            header("location: ../view/auth/logIn.php");
             exit();
         }
-
-        
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        
-        if (!$user) {
+         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+         if (!$user) {
             header("location: ../view/auth/logIn.php?error=usernotfound");
             exit();
         }
@@ -50,7 +43,6 @@ class LoginM
             exit();
         }
 
-        session_start();
         $_SESSION["userid"] = $user["id"];
         $_SESSION["userName"] = $user["name"];
         $_SESSION["userrole"] = $user["role"];

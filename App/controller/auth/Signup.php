@@ -1,5 +1,7 @@
 <?php 
 namespace App\controller\auth;
+session_start();
+
 require __DIR__ . '/../../../vendor/autoload.php'; 
 use App\class\User; 
 use App\class\Role; 
@@ -26,25 +28,30 @@ class Signup
         if($this->emptyInput()==false)
         {
             // echo "empty input !";
-            header("location: ../../view/auth/signUp.php?error=emptyInput");
+            $_SESSION["errorGenerale"] = "empty input !";
+            header("location: ../../view/auth/signUp.php");
             exit();
         }
         if(Validation::validationUsername($this->nom)==false)
         {
             // echo "invalid name !";
-            header("location: ../../view/auth/signUp.php?error=invaldname");
+            $_SESSION["errorname"] = "invalid name !";
+
+            header("location: ../../view/auth/signUp.php");
             exit();
         }
         if(Validation::validationEmail($this->email)==false)
         {
             // echo "invalid email !";
-            header("location: ../../view/auth/signUp.php?error=invalidemail");
+            $_SESSION["erroremail"] = "invalid email !";
+            header("location: ../../view/auth/signUp.php");
             exit();
         }
         if(!Validation::checkUser( $this->nom,$this->email))
         {
             // echo "Username or email taken !";
-            header("location: ../../view/auth/signUp.php?error=UsernameOrEmailTaken");
+            $_SESSION["errorGenerale"] = "Username or email taken !";
+            header("location: ../../view/auth/signUp.php");
             exit();
         }
         $role= new Role($this->idRole);
