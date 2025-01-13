@@ -8,10 +8,6 @@ use App\Class\User;
 use App\Class\Enseignant; 
 use PDO;
 
-
-
-
-
 class LoginM
 
 {
