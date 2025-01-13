@@ -55,9 +55,7 @@ class LoginM
 
         
         $role = new Role($user["role_id"], $user["role"]);
-        return new User($user["name"], $user["email"], $user["password"], $role, $user["id"]);
-
-    
+        $user= new User($user["name"], $user["email"], $user["password"], $role, $user["id"]);
 }
 
 }
