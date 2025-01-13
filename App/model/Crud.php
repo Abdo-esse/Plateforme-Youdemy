@@ -31,9 +31,10 @@ class Crud
      
       static function readAction($table,$id){
         $conn = Connexion::connexion();
-        $sql="SELECT * FROM $table WHERE id= ?";
+        $column = key($id);
+        $sql="SELECT * FROM $table WHERE $column= ?";
         $stmt= $conn->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->execute(array_values($id));
 
         return $stmt->fetch(PDO::FETCH_OBJ);
       }
