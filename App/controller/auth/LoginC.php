@@ -2,6 +2,7 @@
 
 
 namespace App\Controller\auth;
+session_start();
 
 require __DIR__ . '/../../../vendor/autoload.php'; 
 use App\model\LoginM;

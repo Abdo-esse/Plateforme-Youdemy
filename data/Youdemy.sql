@@ -23,4 +23,12 @@ use  Youdemy;
     etatCompte ENUM('en cours', 'accepter', 'refuser') NOT NULL DEFAULT 'en cours',
     dateDecision date ,
     Foreign Key (idEnseignant) REFERENCES users(id)
-);
+); 
+ CREATE TABLE categories (
+    id INT PRIMARY key AUTO_INCREMENT ,
+    name VARCHAR(50),
+    idAdmin int  ,
+    dateCreation date DEFAULT current_timestamp(), 
+    dateDelete date , 
+    Foreign Key (idAdmin) REFERENCES users(id)
+); 

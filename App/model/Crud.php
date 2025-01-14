@@ -29,12 +29,12 @@ class Crud
         return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
      
-      static function readAction($table,$id){
+      static function readAction($table,$wher){
         $conn = Connexion::connexion();
-        $column = key($id);
+        $column = key($wher);
         $sql="SELECT * FROM $table WHERE $column= ?";
         $stmt= $conn->prepare($sql);
-        $stmt->execute(array_values($id));
+        $stmt->execute(array_values($wher));
 
         return $stmt->fetch(PDO::FETCH_OBJ);
       }

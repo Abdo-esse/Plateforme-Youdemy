@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../../vendor/autoload.php';  
- echo"hadi 1";
  use App\Config\Connexion;
  Connexion::connexion();
 ?>
@@ -12,10 +11,9 @@ require __DIR__ . '/../../vendor/autoload.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- link css -->
-    <link rel="stylesheet" href="assets/style/style.css">
-    <!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+   
+       <!-- font -->
+       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- tailwind -->
     <!-- carousel -->
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
@@ -42,7 +40,8 @@ require __DIR__ . '/../../vendor/autoload.php';
     </style>
 
 
-
+ <!-- link css -->
+ <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="assets/images/logo/faveicon.webp" type="image/x-icon">
     <title> Youdemy | Home Page</title>
   </head>
@@ -417,3 +416,8 @@ require __DIR__ . '/../../vendor/autoload.php';
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer></script>
+      
+
+
+      
+
