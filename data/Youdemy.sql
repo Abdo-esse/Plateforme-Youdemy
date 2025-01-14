@@ -31,4 +31,12 @@ use  Youdemy;
     dateCreation date DEFAULT current_timestamp(), 
     dateDelete date , 
     Foreign Key (idAdmin) REFERENCES users(id)
+);  
+ CREATE TABLE tags (
+    id INT PRIMARY key AUTO_INCREMENT ,
+    name VARCHAR(50),
+    idAdmin int  ,
+    dateCreation date DEFAULT current_timestamp(), 
+    dateDelete date , 
+    Foreign Key (idAdmin) REFERENCES users(id)
 ); 
