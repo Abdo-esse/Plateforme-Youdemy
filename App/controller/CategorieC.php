@@ -8,17 +8,12 @@ class CategorieC
     private $id ;
     private $name;
     private $idAdmin;
-    private $dateDelete;
      public function __construct($name="",$idAdmin="",$id=null)
      {
         $this->name=$name;
         $this->idAdmin=$idAdmin;
         $this->id=$id;
     }
-
-     public function setId($id){ $this->id=$id;}
-     public function setName($name){ $this->name=$name;}
-     public function setDateDalet($dateDelete){ $this->dateDelete=$dateDelete;}
 
      public function addCategorieController()
      {
@@ -30,9 +25,12 @@ class CategorieC
         $categorie=new Categorie();
         return $categorie->readCategorie();
      }
-     public function daletCategorie()
+     public function daletCategorieController($id)
      {
-        Crud::updateAction('categories', $this->id,["dateDelete"=>$this->dateDelete]);
+        $categorie=new Categorie();
+        $categorie->setId($id);
+        $categorie->setDateDalet(date("Y-m-d"));
+        $categorie->daletCategorie();
      }
      public function updateCategorie()
      {
