@@ -23,4 +23,4 @@ use  Youdemy;
     etatCompte ENUM('en cours', 'accepter', 'refuser') NOT NULL DEFAULT 'en cours',
     dateDecision date ,
     Foreign Key (idEnseignant) REFERENCES users(id)
-);
+); 
