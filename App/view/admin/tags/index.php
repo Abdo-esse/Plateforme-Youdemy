@@ -7,8 +7,8 @@ session_start();
      require __DIR__ . '/../../../../vendor/autoload.php'; 
     use App\controller\TagC;
 
- $categories= new TagC();
- $_SESSION["categories"]=$categories->readCategorieController();
+ $tag= new TagC();
+ $_SESSION["tag"]=$tag->readTagController();
 
 ?>
 
@@ -78,11 +78,11 @@ session_start();
             </a>
          </li>
          <li>
-            <a href="../categorie/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="../tag/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                   <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
                </svg>
-               <span class="flex-1 ms-3 whitespace-nowrap">Categorie</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">tag</span>
                <!-- <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
             </a>
          </li>
@@ -184,15 +184,16 @@ session_start();
         </thead>
         <tbody>
         <?php
-            //  foreach ($_SESSION["categories"] as $categorie) {
-            //     if ($categorie->dateDelete == null) {
-            //         ?>
+             foreach ($_SESSION["tag"] as $tag) {
+                if ($tag->dateDelete == null) {
+                    ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php  ?>
+                <?php  echo  $tag->name?>
                 </th>
                 <td class="px-6 py-4">
+                <?php  echo  $tag->dateCreation?>
                 </td>
                 <td class="px-6 py-4">
                     <a href="./update.php?id=" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -202,8 +203,8 @@ session_start();
                 </td>
             </tr>
             <?php
-            //     }
-            //  } echo  $categorie->name
+                }
+             } 
             ?>
         </tbody>
     </table>
