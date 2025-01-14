@@ -40,7 +40,7 @@ class Tag
      }
      public function daletTag()
      {
-        Crud::updateAction('tags', $this->id,["date_delete"=>$this->dateDelete]);
+        Crud::updateAction('tags', $this->id,["dateDelete"=>$this->dateDelete]);
      }
      public function updatetag()
      {

@@ -199,7 +199,7 @@ session_start();
                     <a href="./update.php?id=" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./delate.php?id=" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                    <a href="./delete.php?id=<?php echo  $tag->id?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
                 </td>
             </tr>
             <?php
