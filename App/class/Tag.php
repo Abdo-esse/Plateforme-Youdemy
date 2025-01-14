@@ -36,7 +36,7 @@ class Tag
      }
      public function readTag()
      {
-        return Crud::readAction('categories',["id"=>$this->id]);
+        return Crud::readAction('tags',["id"=>$this->id]);
      }
      public function daletTag()
      {
