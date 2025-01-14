@@ -9,9 +9,7 @@ if ($_SESSION["userrole"]!="Administrateur") {
 if (isset($_GET['id'])) {
     $categorie = new CategorieC();
     $categorie->daletCategorieController($_GET['id']);
-     
-
-      header("Location: ./index.php");
-      exit(); 
+    header("Location: ./index.php");
+    exit(); 
 }
     ?>
