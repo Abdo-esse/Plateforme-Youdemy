@@ -17,7 +17,7 @@ class Tag
         $this->id=$id;
         $this->data=[
             "name"=>"$this->name",
-            "id_admin"=>$this->idAdmin
+            "idAdmin"=>$this->idAdmin
         ];
 
      }
@@ -30,9 +30,13 @@ class Tag
      {
         Crud::createAction('tags',$this->data);
      }
-     public function readtag()
+     public function readAlltag()
      {
         return Crud::readAll('tags');
+     }
+     public function readTag()
+     {
+        return Crud::readAction('categories',["id"=>$this->id]);
      }
      public function daletTag()
      {

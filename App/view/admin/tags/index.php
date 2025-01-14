@@ -4,11 +4,11 @@ session_start();
     if ($_SESSION["userrole"]!="Administrateur") {
 
     }
-//      require __DIR__ . '/../../../../vendor/autoload.php'; 
-//     use App\controller\CategorieC;
+     require __DIR__ . '/../../../../vendor/autoload.php'; 
+    use App\controller\TagC;
 
-//  $categories= new CategorieC();
-//  $_SESSION["categories"]=$categories->readCategorieController();
+ $categories= new TagC();
+ $_SESSION["categories"]=$categories->readCategorieController();
 
 ?>
 
@@ -54,7 +54,7 @@ session_start();
     <title> Youdemy | Catégories</title>
   </head>
     <body>
-        
+
         
         <main>
             

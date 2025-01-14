@@ -1,21 +1,19 @@
 <?php
 session_start();
 require __DIR__ . '/../../../../vendor/autoload.php'; 
-use App\controller\CategorieC;
+use App\controller\TagC;
 if ($_SESSION["userrole"]!="Administrateur") {
 
 } 
 
 if (isset($_POST['submit'])) {
-    $CategoriesTitle=$_POST["CategoriesTitle"];
+    $tagsTitle=$_POST["tagsTitle"];
    
-    foreach($CategoriesTitle as $CategorieTitle ){
-      $categorie = new CategorieC($CategorieTitle, $_SESSION["userid"]);
-      $categorie->addCategorieController();
+    foreach($tagsTitle as $tagTitle ){
+      $tag = new TagC($tagTitle, $_SESSION["userid"]);
+      $tag->addTagController();
       }
-     
-
-      header("Location: ./index.php");
+       header("Location: ./index.php");
       exit(); 
 }
     ?>
