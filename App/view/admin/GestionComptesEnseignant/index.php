@@ -5,10 +5,12 @@ session_start();
 
     }
      require __DIR__ . '/../../../../vendor/autoload.php'; 
-    use App\controller\TagC;
-
- $tag= new TagC();
- $_SESSION["tag"]=$tag->readTagController();
+     use App\Class\Role; 
+    use App\controller\AdminC;
+    $role = new Role(1,);
+     $ComptesEnseignant= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$role);
+      $_SESSION["ComptesEnseignant"]=$ComptesEnseignant->afficherComptesEnseignantsEnCoursConreller();
+//  print_r($_SESSION["ComptesEnseignant"]);
 
 ?>
 
@@ -188,19 +190,18 @@ session_start();
         </thead>
         <tbody>
         <?php
-            //  foreach ($_SESSION["tag"] as $tag) {
-            //     if ($tag->dateDelete == null) {
-                    ?>
+             foreach ($_SESSION["ComptesEnseignant"] as $Comptes) {
+                        ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php ?>
+                <?php echo $Comptes->name?>
                 </td>
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php ?>
+                <?php echo $Comptes->email?>
                 </td>
                 <td class="px-6 py-4">
-                <?php?>
+                <?php echo $Comptes->dateCreation?>
                 </td>
                 <td class="px-6 py-4">
                     <a href="./update.php?id=<?php ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
@@ -210,8 +211,7 @@ session_start();
                 </td>
             </tr>
             <?php
-            //     }
-            //  } 
+                }
             ?>
         </tbody>
     </table>

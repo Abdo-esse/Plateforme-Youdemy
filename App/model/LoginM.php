@@ -48,6 +48,7 @@ class LoginM
         $_SESSION["userid"] = $user["id"];
         $_SESSION["userName"] = $user["name"];
         $_SESSION["userrole"] = $user["role"];
+        $_SESSION["useremail"] = $user["email"];
         $role = new Role($user["role_id"], $user["role"]);
           echo $user["id"];
         if ($user["role"]=="Enseignant") {
