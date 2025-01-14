@@ -87,7 +87,7 @@ session_start();
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="../tags/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                </svg>
@@ -95,7 +95,7 @@ session_start();
             </a>
          </li>
          <li>
-            <a href="../GestionComptesEnseignant/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                   <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                </svg>
@@ -170,42 +170,48 @@ session_start();
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                   Category
+                   Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   Date Create
+                   E-mail
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Update
+                   Date demande
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Delete
+                Accepter
+                </th>
+                <th scope="col" class="px-6 py-3">
+                Refuser
                 </th>
             </tr>
         </thead>
         <tbody>
         <?php
-             foreach ($_SESSION["tag"] as $tag) {
-                if ($tag->dateDelete == null) {
+            //  foreach ($_SESSION["tag"] as $tag) {
+            //     if ($tag->dateDelete == null) {
                     ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php  echo  $tag->name?>
-                </th>
-                <td class="px-6 py-4">
-                <?php  echo  $tag->dateCreation?>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <?php ?>
+                </td>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <?php ?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./update.php?id=<?php echo  $tag->id?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <?php?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./delete.php?id=<?php echo  $tag->id?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                    <a href="./update.php?id=<?php ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="./delete.php?id=<??>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
                 </td>
             </tr>
             <?php
-                }
-             } 
+            //     }
+            //  } 
             ?>
         </tbody>
     </table>
