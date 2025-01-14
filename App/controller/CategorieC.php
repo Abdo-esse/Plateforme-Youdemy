@@ -23,6 +23,12 @@ class CategorieC
      public function readCategorieController()
      {
         $categorie=new Categorie();
+        return $categorie->readAllCategorie();
+     }
+     public function readOneCategorieController($id)
+     {
+        $categorie=new Categorie();
+        $categorie->setId($id);
         return $categorie->readCategorie();
      }
      public function daletCategorieController($id)
@@ -32,9 +38,10 @@ class CategorieC
         $categorie->setDateDalet(date("Y-m-d"));
         $categorie->daletCategorie();
      }
-     public function updateCategorie()
+     public function updateCategorieController()
      {
-        Crud::updateAction('categories', $this->id,["name"=>"$this->name"]);
+        $categorie=new Categorie($this->name,$this->idAdmin,$this->id);
+        $categorie->updateCategorie();
      }
     
 }

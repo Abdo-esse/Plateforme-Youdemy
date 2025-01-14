@@ -30,10 +30,15 @@ class Categorie
      {
         Crud::createAction('categories',$this->data);
      }
-     public function readCategorie()
+     public function readAllCategorie()
      {
         return Crud::readAll('categories');
      }
+     public function readCategorie()
+     {
+        return Crud::readAction('categories',["id"=>$this->id]);
+     }
+
      public function daletCategorie()
      {
         Crud::updateAction('categories', $this->id,["dateDelete"=>$this->dateDelete]);
