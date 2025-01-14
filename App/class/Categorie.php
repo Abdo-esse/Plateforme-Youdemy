@@ -17,7 +17,7 @@ class Categorie
         $this->id=$id;
         $this->data=[
             "name"=>"$this->name",
-            "id_admin"=>$this->idAdmin
+            "idAdmin"=>$this->idAdmin
         ];
 
      }
@@ -36,7 +36,7 @@ class Categorie
      }
      public function daletCategorie()
      {
-        Crud::updateAction('categories', $this->id,["date_delete"=>$this->dateDelete]);
+        Crud::updateAction('categories', $this->id,["dateDelete"=>$this->dateDelete]);
      }
      public function updateCategorie()
      {
