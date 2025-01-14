@@ -1,9 +1,24 @@
 <?php
 session_start();
+require __DIR__ . '/../../../../vendor/autoload.php'; 
+use App\controller\CategorieC;
+if ($_SESSION["userrole"]!="Administrateur") {
 
-    if ($_SESSION["userrole"]!="Administrateur") {
+} 
 
-    }?>
+if (isset($_POST['submit'])) {
+    $CategoriesTitle=$_POST["CategoriesTitle"];
+   
+    foreach($CategoriesTitle as $CategorieTitle ){
+      $categorie = new CategorieC($CategorieTitle, $_SESSION["userid"]);
+      $categorie->addCategorieController();
+      }
+     
+
+      header("Location: ./index.php");
+      exit(); 
+}
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -58,7 +73,7 @@ session_start();
             </label>
              <input
                type="text"
-               name="jobTitle[]"
+               name="CategoriesTitle[]"
                class="input-value job-title bg-gray-50 border border-gray-300 mb-2 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Categories title"
                required

@@ -3,7 +3,15 @@ session_start();
 
     if ($_SESSION["userrole"]!="Administrateur") {
 
-    }?>
+    }
+     require __DIR__ . '/../../../../vendor/autoload.php'; 
+    use App\controller\CategorieC;
+
+ $categories= new CategorieC();
+ $_SESSION["categories"]=$categories->readCategorieController();
+
+?>
+
 
     <!DOCTYPE html>
     <html lang="en">
@@ -174,13 +182,17 @@ session_start();
             </tr>
         </thead>
         <tbody>
+        <?php
+             foreach ($_SESSION["categories"] as $categorie) {
+                if ($categorie->dateDelete == null) {
+                    ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple Mac
+                <?php echo  $categorie->name ?>
                 </th>
                 <td class="px-6 py-4">
-                    12/21/1002
+                <?php echo  $categorie->dateCreation ?>
                 </td>
                 <td class="px-6 py-4">
                     <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -189,6 +201,10 @@ session_start();
                     <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
+            <?php
+                }
+             } 
+            ?>
         </tbody>
     </table>
 </div>

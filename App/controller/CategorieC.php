@@ -25,9 +25,10 @@ class CategorieC
         $categorie=new Categorie($this->name, $this->idAdmin);
         $categorie->addCategorie();
      }
-     public function readCategorie()
+     public function readCategorieController()
      {
-        return Crud::readAll('categories');
+        $categorie=new Categorie();
+        return $categorie->readCategorie();
      }
      public function daletCategorie()
      {
