@@ -2,9 +2,12 @@
 session_start();
 require __DIR__ . '/../../../../vendor/autoload.php'; 
 use App\controller\TagC;
-if ($_SESSION["userrole"]!="Administrateur") {
-
-} 
+if ( $_SESSION["userrole"]!="Administrateur") {
+  
+    session_destroy();
+    header("Location: ../auth/logIn.php"); 
+    exit(); 
+ }?> 
 
 if (isset($_POST['submit'])) {
     $tagsTitle=$_POST["tagsTitle"];
