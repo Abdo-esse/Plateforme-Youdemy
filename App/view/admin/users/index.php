@@ -213,13 +213,13 @@ session_start();
                 <?php echo $user->compteStatut ?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./accepter.php?id=<?php ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Activer</a>
+                    <a href="./gestionUtilisateurs.php?id=<?php echo $user->id  ?>&status=actif" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Activer</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./refuser.php?id=<?php ?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">suspendu</a>
+                    <a href="./gestionUtilisateurs.php?id=<?php echo $user->id  ?>&status=suspendu" class="font-medium text-red-600 dark:text-blue-500 hover:underline">suspendu</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./refuser.php?id=<?php ?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">supprimé</a>
+                    <a href="./gestionUtilisateurs.php?id=<?php echo $user->id  ?>&status=supprimé" class="font-medium text-red-600 dark:text-blue-500 hover:underline">supprimé</a>
                 </td>
             </tr>
             <?php

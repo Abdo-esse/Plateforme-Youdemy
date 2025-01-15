@@ -21,16 +21,21 @@ class Admin extends User
        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function gteEnseignant($idEnseignant)
-    {
-        return Crud::readAction('users',["id"=>$idEnseignant]);
-    }
-    public function gteAllUsers()
-    {
-        return Crud::readAll('users');
-    }
+    // public function gteEnseignant($idEnseignant)
+    // {
+    //     return Crud::readAction('users',["id"=>$idEnseignant]);
+    // }
+    // public function gteAllUsers()
+    // {
+    //     return Crud::readAll('users');
+    // }
     public function validerEnseignant($id,$etatCompte)
     {
         Crud::updateAction('gestionenseignants', $id,["etatCompte"=>"$etatCompte"]);
+    }
+    public function gestionUtilisateurs($id,$compteStatut)
+    {
+        Crud::updateAction('users', $id,["compteStatut"=>"$compteStatut"]);
+        
     }
 }

@@ -14,7 +14,7 @@ session_start();
      $idEnseignant=$_GET["id"];
      $roleAdmin = new Role(1);
      $admin= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$roleAdmin);
-     $enseignantData= $admin->gteEnseignantConreller($idEnseignant);
+     $enseignantData= $admin->gteUserConreller($idEnseignant);
      $roleEnseignant = new Role(2);
      $enseignant=new Enseignant($enseignantData->name,$enseignantData->email,"",$roleEnseignant,$etatCompte);
      $etatCompte=$enseignant->getEtatCompte();

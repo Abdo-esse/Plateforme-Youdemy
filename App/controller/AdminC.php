@@ -34,13 +34,17 @@ class AdminC
         $this->adminM->validerEnseignant($id,$etatCompte);
 
     }
-    public function gteEnseignantConreller($idEnseignant){
-       return $this->adminM->gteEnseignant($idEnseignant);
+    public function gteUserConreller($idUser){
+       return $this->adminM->gteUser($idUser);
 
     }
     public function gteAllUsersConreller()
     {
         return $this->adminM->gteAllUsers();
+    }
+    public function gestionUtilisateursConreller($id,$compteStatut)
+    {
+        $this->adminM->gestionUtilisateurs($id,$compteStatut);
     }
    
 
