@@ -1,22 +1,31 @@
 <?php 
-require_once __DIR__ . '/../../../../vendor/autoload.php'; 
 
-// use App\classes\Categorie;
-//  session_start();
-//  $Categories= new Categorie();
-//    $_SESSION["categories"]=$Categories->readCategorie();
-//    use App\classes\Tag;
-//  $tags= new Tag();
-//  $_SESSION["tags"]=$tags->readtag();
+session_start();
 
-?>
+if ( $_SESSION["userrole"]!="Enseignant") {
+  
+   session_destroy();
+   header("Location: ../auth/logIn.php"); 
+   exit(); 
+}
+     require __DIR__ . '/../../../../../vendor/autoload.php'; 
+    use App\controller\CategorieC;
+    use App\controller\TagC;
+
+ $categories= new CategorieC();
+ $_SESSION["categories"]=$categories->readCategorieController();
+ $tag= new TagC();
+ $_SESSION["tag"]=$tag->readTagController();
+  ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recruteur</title>
+    <title>Cours Vedio</title>
       <!-- tailwind -->
     <!-- carousel -->
     <link
@@ -124,13 +133,13 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
                 >
                   <option onch value="">Choisai une  Catégorie</option>
                   <?php 
-                //   foreach ($_SESSION["categories"] as $categorieItem) {
-                // if ($categorieItem->date_delete == null) {
+          foreach ($_SESSION["categories"] as $categorie) {
+            if ($categorie->dateDelete == null)  {
                     ?>
-                         <option value="<?php ?>"><?php  ?></option>
+                         <option value="<?php echo  $categorie->id ?>"><?php echo  $categorie->name ?></option>
                   <?php
-            //        } 
-            // }
+                   } 
+            }
             ?>
               </select>
               </div>
@@ -195,12 +204,13 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
                 >
                 <?php
             //  foreach ($_SESSION["tags"] as $tagItem) {
-            //     if ($tagItem->date_delete == null) {
+                foreach ($_SESSION["tag"] as $tag) {
+                    if ($tag->dateDelete == null) {
                     ?>
-                    <option value=" <?php  ?>" ><?php  ?></option>
+                    <option value=" <?php echo  $tag->id?>" ><?php  echo  $tag->name?></option>
                 <?php
-            //     }
-            //  } 
+                }
+             } 
             ?>
                    
                 </select>

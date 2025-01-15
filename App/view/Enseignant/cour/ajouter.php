@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if ( $_SESSION["userrole"]!="Enseignant") {
+  
+   session_destroy();
+   header("Location: ../auth/logIn.php"); 
+   exit(); 
+}
+  ?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -58,7 +68,7 @@
           <h2 class="text-xl font-semibold text-gray-800">Cours Vidéo</h2>
           <p class="text-gray-600 mb-4">Créez un cours avec du contenu vidéo interactif</p>
           
-          <a href="./coursVideo.php" class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
+          <a href="./video/ajouter.php" class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
             <span>Ajouter un cours vidéo</span>
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -78,9 +88,9 @@
           </div>
           
           <h2 class="text-xl font-semibold text-gray-800">Cours Texte</h2>
-          <p class="text-gray-600 mb-4">Créez un cours basé sur du contenu textuel et des images</p>
+          <p class="text-gray-600 mb-4">Créez un cours basé sur du contenu textuel</p>
           
-          <a href="#" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
+          <a href="./texte/ajouter.php" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
             <span>Ajouter un cours texte</span>
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
