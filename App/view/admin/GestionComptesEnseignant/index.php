@@ -200,16 +200,17 @@ session_start();
                 <?php echo $Comptes->email?>
                 </td>
                 <td class="px-6 py-4">
-                <?php echo $Comptes->dateCreation?>
+                <?php echo $Comptes->dateCreation;?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./accepter.php?id=<?php echo $Comptes->id?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
+                    <a href="./accepter.php?id=<?php echo $Comptes->id?>&idEnseignant=<?php echo $Comptes->enseignants?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./delete.php?id=<?php echo $Comptes->idEnseignant?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
+                    <a href="./refuser.php?id=<?php echo $Comptes->id?>&idEnseignant=<?php echo $Comptes->enseignants?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
                 </td>
             </tr>
             <?php
+             
                 }
             ?>
         </tbody>

@@ -10,7 +10,7 @@ session_start();
     use App\controller\AdminC;
     if(isset($_GET["id"]))
     {
-        $etatCompte="accepter";
+        $etatCompte="refuser";
      $idEnseignant=$_GET["id"];
      $roleAdmin = new Role(1);
      $admin= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$roleAdmin);

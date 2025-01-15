@@ -12,7 +12,7 @@ class Admin extends User
     public function afficherComptesEnseignantsEnCours()
     {
        $conn = Connexion::connexion(); 
-       $sql='SELECT users.name,users.id,users.email,users.dateCreation
+       $sql='SELECT users.name,users.id,users.email,users.dateCreation,gestionenseignants.id as enseignants 
              FROM users
              join gestionenseignants on gestionenseignants.idEnseignant=users.id
              WHERE users.idRole=2 and gestionenseignants.etatCompte="en cours"';
@@ -25,7 +25,7 @@ class Admin extends User
     {
         return Crud::readAction('users',["id"=>$idEnseignant]);
     }
-    public function accepteEnseignants($id,$etatCompte)
+    public function validerEnseignant($id,$etatCompte)
     {
         Crud::updateAction('gestionenseignants', $id,["etatCompte"=>"$etatCompte"]);
     }

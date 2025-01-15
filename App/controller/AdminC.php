@@ -30,8 +30,8 @@ class AdminC
     {
         return $this->adminM->afficherComptesEnseignantsEnCours();
     }
-    public function accepteEnseignantsConreller($id,$etatCompte){
-        $this->adminM->accepteEnseignants($id,$etatCompte);
+    public function validerEnseignantConreller($id,$etatCompte){
+        $this->adminM->validerEnseignant($id,$etatCompte);
 
     }
     public function gteEnseignantConreller($idEnseignant){
