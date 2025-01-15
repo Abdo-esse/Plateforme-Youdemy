@@ -1,9 +1,12 @@
 <?php
 session_start();
 
-    if ($_SESSION["userrole"]!="Administrateur") {
-
-    }?>
+if ( $_SESSION["userrole"]!="Administrateur") {
+  
+   session_destroy();
+   header("Location: ../auth/logIn.php"); 
+   exit(); 
+}?>
 
     <!DOCTYPE html>
     <html lang="en">
