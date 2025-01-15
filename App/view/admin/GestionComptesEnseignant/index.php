@@ -5,10 +5,11 @@ session_start();
 
     }
      require __DIR__ . '/../../../../vendor/autoload.php'; 
-    use App\controller\TagC;
-
- $tag= new TagC();
- $_SESSION["tag"]=$tag->readTagController();
+     use App\Class\Role; 
+    use App\controller\AdminC;
+    $role = new Role(1);
+     $admin= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$role);
+      $_SESSION["ComptesEnseignant"]=$admin->afficherComptesEnseignantsEnCoursConreller();
 
 ?>
 
@@ -87,7 +88,7 @@ session_start();
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="../tags/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                </svg>
@@ -95,12 +96,12 @@ session_start();
             </a>
          </li>
          <li>
-            <a href="../GestionComptesEnseignant/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                   <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                </svg>
                <span class="flex-1 ms-3 whitespace-nowrap">Enseignants en attente</span>
-               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"><?php echo count($_SESSION["ComptesEnseignant"])?></span>
 
             </a>
          </li>
@@ -158,62 +159,52 @@ session_start();
             </div>
             <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
         </div>
-        <a href="./ajouter.php">
-        <div class="m-2 flex items-center justify-end">
-            <button data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-                <span class="sr-only">New item</span>
-            </button>
-        </div>
-        <div id="tooltip-new" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-            Create new item
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        </a>
-        
     </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                   Category
+                   Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   Date Create
+                   E-mail
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Update
+                   Date demande
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Delete
+                Accepter
+                </th>
+                <th scope="col" class="px-6 py-3">
+                Refuser
                 </th>
             </tr>
         </thead>
         <tbody>
         <?php
-             foreach ($_SESSION["tag"] as $tag) {
-                if ($tag->dateDelete == null) {
-                    ?>
+             foreach ($_SESSION["ComptesEnseignant"] as $Comptes) {
+                        ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php  echo  $tag->name?>
-                </th>
-                <td class="px-6 py-4">
-                <?php  echo  $tag->dateCreation?>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <?php echo $Comptes->name?>
+                </td>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <?php echo $Comptes->email?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./update.php?id=<?php echo  $tag->id?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <?php echo $Comptes->dateCreation;?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./delete.php?id=<?php echo  $tag->id?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                    <a href="./validerEnseignant.php?id=<?php echo $Comptes->id?>&idEnseignant=<?php echo $Comptes->enseignants?>&etatCompte=accepter" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="./validerEnseignant.php?id=<?php echo $Comptes->id?>&idEnseignant=<?php echo $Comptes->enseignants?>&etatCompte=refuser" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
                 </td>
             </tr>
             <?php
+             
                 }
-             } 
             ?>
         </tbody>
     </table>

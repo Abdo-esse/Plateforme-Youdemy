@@ -6,17 +6,17 @@ use App\model\Crud;
 
 class Enseignant extends User
 {
-    private $statue;
+    private $etatCompte;
 
 
-    public function __construct($nom, $email, $password, Role $role,$statue= null, $id = null)
+    public function __construct($nom, $email, $password, Role $role,$etatCompte= null, $id = null)
     {
         parent::__construct($nom, $email, $password, $role, $id);
-        $this->statue = $statue;
+        $this->etatCompte = $etatCompte;
       }
 
-    public function getStatue(){ return $this->statue;  }
-    public function setStatue($statue){ $this->statue = $statue;}
+    public function getEtatCompte(){ return $this->etatCompte;  }
+    public function setEtatCompte($etatCompte){ $this->etatCompte = $etatCompte;}
 
 
     public function inscription (){
