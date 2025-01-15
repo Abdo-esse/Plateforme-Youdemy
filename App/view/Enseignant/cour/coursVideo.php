@@ -54,16 +54,16 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
 <form action="../../../Controllers/recruteur/addOffre.php" method="post"  class="card max-w-sm mx-auto p-2">
             <div class="mb-2">
               <label
-                for="name"
+                for="titre"
                 class="block mb-2 text-sm font-medium text-gray"
-                >Post</label
+                >Titre</label
               >
               <input
-                type="name"
-                id="name"
+                type="titre"
+                id="titre"
                 name="post"
                 class="inputsText fullName bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
-                placeholder="Full-Name"
+                placeholder="Titre du cours"
                 required
               />
             </div>
@@ -71,12 +71,12 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
               <label
                 for="photoJeuor"
                 class="block mb-2 text-sm font-medium text-gray dark:text-gray"
-                >Salaire proposé</label
+                >photo couverture </label
               >
               <input
                 type="text"
                 id="photoJeuor"
-                name="salaire"
+                name="photoCouverture"
                 class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Entrer lien de limage"
                 required
@@ -86,13 +86,28 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
               <label
                 for="photoJeuor"
                 class="block mb-2 text-sm font-medium text-gray dark:text-gray"
-                >Qualifications requises</label
+                >Cours </label
+              >
+              <input
+                type="text"
+                id="photoJeuor"
+                name="photoCouverture"
+                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                placeholder="Entrer lien de cours"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="photoJeuor"
+                class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                >Description</label
               >
               <textarea
-               name="qualifications" 
+               name="description" 
                id=""
                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
-               placeholder="Entrer lien de limage"
+               placeholder="Ajouter un description"
                ></textarea>
             </div>
             <div class="md:flex gap-2">
@@ -124,17 +139,51 @@ require_once __DIR__ . '/../../../../vendor/autoload.php';
                   <label
                     for="nationality"
                     class="block mb-2 text-sm font-medium text-gray dark:text-gray"
-                    >Lieu de travail.</label
+                    >Nombre des chapitres</label
                   >
                   <input
-                type="text"
-                name="lieu"
+               type="number"  name="chapitres" min="1" 
+             
                     class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Entrer lien de limage"
+                  placeholder="Entrer la durée du cours"
                 required
               />
                  
                 </div>
+              
+            </div>
+            
+            <div class="mb-2">
+                  <label
+                    for="nationality"
+                    class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                    >Durée</label
+                  >
+                  <input
+               type="number"  name="duree" min="1" max="100"
+             
+                    class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entrer la durée du cours"
+                required
+              />
+                 
+                </div>
+              <div class="mb-2">
+                  <label
+                    for="nationality"
+                    class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                    >Prix</label
+                  >
+                  <input
+               type="number"  name="prix" min="1" 
+             
+                    class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entrer la prix du cours"
+                required
+              />
+                 
+                
+              
             </div>
             <div class="mb-2">
             <label for="tags" class="block text-sm font-medium text-gray-400">Tags</label>
