@@ -27,7 +27,7 @@ class Admin extends User
     }
     public function gteAllUsers()
     {
-        return Crud::readAll();
+        return Crud::readAll('users');
     }
     public function validerEnseignant($id,$etatCompte)
     {

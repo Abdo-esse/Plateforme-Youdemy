@@ -3,7 +3,15 @@ session_start();
 
     if ($_SESSION["userrole"]!="Administrateur") {
 
-    }?>
+    }
+    require __DIR__ . '/../../../../vendor/autoload.php'; 
+    use App\Class\Role; 
+   use App\controller\AdminC;
+   $role = new Role(1);
+    $admin= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$role);
+     $_SESSION["users"]=$admin->gteAllUsersConreller();
+     
+     ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -187,21 +195,22 @@ session_start();
         </thead>
         <tbody>
         <?php
-            //  foreach ($_SESSION["ComptesEnseignant"] as $Comptes) {
+             foreach ($_SESSION["users"] as $user) {
+                if ($user->compteStatut != "supprimé") {
                         ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php ?>
+                <?php echo $user->name ?>
                 </td>
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php ?>
+                <?php echo $user->email ?>
                 </td>
                 <td class="px-6 py-4">
-                <?php ?>
+                <?php echo $user->dateCreation ?>
                 </td>
                 <td class="px-6 py-4">
-                <?php ?>
+                <?php echo $user->compteStatut ?>
                 </td>
                 <td class="px-6 py-4">
                     <a href="./accepter.php?id=<?php ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Activer</a>
@@ -214,8 +223,8 @@ session_start();
                 </td>
             </tr>
             <?php
-             
-                // }
+                }
+                }
             ?>
         </tbody>
     </table>

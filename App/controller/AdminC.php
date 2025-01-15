@@ -38,6 +38,10 @@ class AdminC
        return $this->adminM->gteEnseignant($idEnseignant);
 
     }
+    public function gteAllUsersConreller()
+    {
+        return $this->adminM->gteAllUsers();
+    }
    
 
     
