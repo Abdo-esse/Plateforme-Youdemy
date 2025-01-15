@@ -5,7 +5,7 @@ if ( $_SESSION["userrole"]!="Administrateur") {
     session_destroy();
     header("Location: ../auth/logIn.php"); 
     exit(); 
- }?>
+ }
      require __DIR__ . '/../../../../vendor/autoload.php'; 
      use App\Class\Role; 
     use App\controller\AdminC;
