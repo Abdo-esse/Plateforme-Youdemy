@@ -25,6 +25,10 @@ class Admin extends User
     {
         return Crud::readAction('users',["id"=>$idEnseignant]);
     }
+    public function gteAllUsers()
+    {
+        return Crud::readAll();
+    }
     public function validerEnseignant($id,$etatCompte)
     {
         Crud::updateAction('gestionenseignants', $id,["etatCompte"=>"$etatCompte"]);
