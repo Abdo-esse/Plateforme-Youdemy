@@ -1,0 +1,48 @@
+<!-- Carte de cours -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <!-- Image -->
+      <div class="relative h-48">
+        <img src="/api/placeholder/400/320" alt="Image du cours" class="w-full h-full object-cover">
+        <span class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-sm">
+          Nouveau
+        </span>
+      </div>
+
+      <!-- Contenu -->
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">Introduction au développement Web</h3>
+        <p class="text-gray-600 mb-4">
+          Apprenez les bases du développement web avec HTML, CSS et JavaScript.
+        </p>
+        
+        <!-- Détails -->
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center text-gray-500">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>12 heures de cours</span>
+          </div>
+          <div class="flex items-center text-gray-500">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <span>10 chapitres</span>
+          </div>
+          <div class="flex items-center text-gray-500">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            <span>Prof. Martin Dubois</span>
+          </div>
+        </div>
+
+        <!-- Prix et bouton -->
+        <div class="flex justify-between items-center">
+          <span class="text-2xl font-bold text-blue-600">29,99 €</span>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+            S'inscrire
+          </button>
+        </div>
+      </div>
+    </div>
