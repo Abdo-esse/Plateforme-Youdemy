@@ -11,6 +11,7 @@ class AdminC
     protected $email;
     protected $password ;
     protected Role $role;
+    protected Admin $adminM;
 
    
     
@@ -21,13 +22,21 @@ class AdminC
         $this->email=$email;
         $this->password=$password;
         $this->role=$role;
+        $this->adminM=new Admin(  $this->nom,$this->email, $this->password, $this->role, $this->id);
        
     }
    
     public function afficherComptesEnseignantsEnCoursConreller()
     {
-        $admin= new Admin(  $this->nom,$this->email, $this->password, $this->role, $this->id);
-        return $admin->afficherComptesEnseignantsEnCours();
+        return $this->adminM->afficherComptesEnseignantsEnCours();
+    }
+    public function accepteEnseignantsConreller($id,$etatCompte){
+        $this->adminM->accepteEnseignants($id,$etatCompte);
+
+    }
+    public function gteEnseignantConreller($idEnseignant){
+       return $this->adminM->gteEnseignant($idEnseignant);
+
     }
    
 

@@ -7,10 +7,9 @@ session_start();
      require __DIR__ . '/../../../../vendor/autoload.php'; 
      use App\Class\Role; 
     use App\controller\AdminC;
-    $role = new Role(1,);
-     $ComptesEnseignant= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$role);
-      $_SESSION["ComptesEnseignant"]=$ComptesEnseignant->afficherComptesEnseignantsEnCoursConreller();
-//  print_r($_SESSION["ComptesEnseignant"]);
+    $role = new Role(1);
+     $admin= new AdminC( $_SESSION["userName"],$_SESSION["useremail"],"",$role);
+      $_SESSION["ComptesEnseignant"]=$admin->afficherComptesEnseignantsEnCoursConreller();
 
 ?>
 
@@ -102,7 +101,7 @@ session_start();
                   <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                </svg>
                <span class="flex-1 ms-3 whitespace-nowrap">Enseignants en attente</span>
-               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"><?php echo count($_SESSION["ComptesEnseignant"])?></span>
 
             </a>
          </li>
@@ -204,10 +203,10 @@ session_start();
                 <?php echo $Comptes->dateCreation?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./update.php?id=<?php ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
+                    <a href="./accepter.php?id=<?php echo $Comptes->id?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accepter</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="./delete.php?id=<??>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
+                    <a href="./delete.php?id=<?php echo $Comptes->idEnseignant?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Refuser</a>
                 </td>
             </tr>
             <?php
