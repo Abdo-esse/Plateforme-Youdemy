@@ -7,12 +7,10 @@ use App\Class\CoursTexte;
 class CoursConroller
 {
     
-   public function ajouterCoursVedio($titre,$photoCouverture,$description,$idCategorie,$enseignat,
-                                      $nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null)
+   public function ajouterCoursVedio($titre,$photoCouverture,$description,$idCategorie,$enseignant,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null)
    {
-    $coursVedio= new CoursVedio($titre,$photoCouverture,$description,$idCategorie,$enseignat,
-                                 $nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null);
-    $coursVedio->ajouter();
+      $coursVedio= new CoursVedio($titre,$photoCouverture,$description,$idCategorie,$enseignant,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null);
+      $coursVedio->ajouter();
    }
    public function ajouterCoursText($titre,$photoCouverture,$description,$idCategorie,$enseignat,
                                       $nomberChapitre,$duree,$prix,$tags,$texteContenu,$id=null)

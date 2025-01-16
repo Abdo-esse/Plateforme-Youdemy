@@ -3,7 +3,11 @@
 session_start();
 require __DIR__ . '/../../../../../vendor/autoload.php'; 
     use App\controller\CategorieC;
+    use App\controller\EnseignantController;
+    use App\controller\CoursConroller;
     use App\controller\TagC;
+    use App\Class\Role; 
+    use App\Class\Enseignant; 
 
 if ( $_SESSION["userrole"]!="Enseignant") {
   
@@ -35,14 +39,17 @@ try {
     $photoCouverture= $_POST["photoCouverture"];
     $description= $_POST["description"];
     $idCategorie= $_POST["categorie"];
-    $enseignat= new Enseignant();
+    $roleEnseignant = new Role(2);
+    $enseignat= new Enseignant( $_SESSION["userName"],$_SESSION["useremail"],"",$roleEnseignant,"", $_SESSION["userid"]);
     $nomberChapitre= $_POST["chapitres"];
     $duree= $_POST["duree"];
     $prix= $_POST["prix"];
     $tags= $_POST["tags"];
     $urlContenu= $_POST["urlContenu"];
-
+    $cours=new CoursConroller();
+    $courszz=$cours->ajouterCoursVedio($titre, $photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
    }
+  
   
   
  

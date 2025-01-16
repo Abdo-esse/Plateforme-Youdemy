@@ -9,6 +9,26 @@ use PDO;
 
 class Crud 
 {
+//   public static function createActioncours($table, $data)
+// {
+//   $conn = Connexion::connexion();
+//     $columns = implode(", ", array_keys($data));
+//     $placeholders = implode(", ", array_fill(0, count($data), '?')); 
+
+//     // Vérifier si les colonnes sont bien présentes
+//     if(empty($columns) || empty($placeholders)){
+//         throw new Exception("Erreur: Colonnes ou valeurs manquantes.");
+//     }
+
+//     $sql = "INSERT INTO `$table` ($columns) VALUES ($placeholders)";
+    
+//     try {
+//         $stmt = $conn->prepare($sql);
+//         $stmt->execute(array_values($data));
+//     } catch (PDOException $e) {
+//         die("Erreur SQL : " . $e->getMessage());
+//     }
+// }
 
       static function createAction ($table,$data){
         $conn = Connexion::connexion();

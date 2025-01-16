@@ -4,7 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use App\class\Enseignant;
 use App\Class\Role; 
 
-class EnseignantConroller
+class EnseignantController
 {
     private Enseignant $enseignantModel;
 
@@ -13,7 +13,7 @@ class EnseignantConroller
 
     public function __construct( $nom, $email, $password,Role $role,$id=null){
        
-        $this->enseignantModel=new enseignantModel(  $nom, $email, $password,$role,$id=null);
+        $this->enseignantModel=new Enseignant(  $nom, $email, $password,$role,$id=null);
        
     }
    
