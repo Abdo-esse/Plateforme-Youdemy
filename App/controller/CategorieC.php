@@ -8,7 +8,7 @@ class CategorieC
     private $id ;
     private $name;
     private $idAdmin;
-    protected Categorie $categorieM;
+    private Categorie $categorieM;
 
      public function __construct($name="",$idAdmin="",$id=null)
      {

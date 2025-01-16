@@ -6,23 +6,14 @@ use App\Class\Role;
 
 class AdminC
 {
-    protected $id;
-    protected $nom ;
-    protected $email;
-    protected $password ;
-    protected Role $role;
-    protected Admin $adminM;
+    private Admin $adminM;
 
    
     
 
     public function __construct( $nom, $email, $password,Role $role,$id=null){
-        $this->id=$id;
-        $this->nom=$nom;
-        $this->email=$email;
-        $this->password=$password;
-        $this->role=$role;
-        $this->adminM=new Admin(  $this->nom,$this->email, $this->password, $this->role, $this->id);
+       
+        $this->adminM=new Admin(  $nom, $email, $password,$role,$id=null);
        
     }
    

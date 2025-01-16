@@ -1,6 +1,9 @@
 <?php 
 
 session_start();
+require __DIR__ . '/../../../../../vendor/autoload.php'; 
+    use App\controller\CategorieC;
+    use App\controller\TagC;
 
 if ( $_SESSION["userrole"]!="Enseignant") {
   
@@ -8,14 +11,46 @@ if ( $_SESSION["userrole"]!="Enseignant") {
    header("Location: ../auth/logIn.php"); 
    exit(); 
 }
-     require __DIR__ . '/../../../../../vendor/autoload.php'; 
-    use App\controller\CategorieC;
-    use App\controller\TagC;
 
- $categories= new CategorieC();
- $_SESSION["categories"]=$categories->readCategorieController();
- $tag= new TagC();
- $_SESSION["tag"]=$tag->readTagController();
+
+try {
+  $categories = new CategorieC();
+  $_SESSION["categories"] = $categories->readCategorieController();
+  
+  $tag = new TagC();
+  $_SESSION["tag"] = $tag->readTagController();
+  
+  
+  if (empty($_SESSION["categories"]) || empty($_SESSION["tag"])) {
+      throw new Exception("Les données sont manquantes !");
+  }
+  
+  // echo "Code exécuté avec succès !<br />";
+} catch (Exception $ex) {
+  echo "Erreur détectée : " . $ex->getMessage() . "<br />";
+}
+
+   if(isset($_POST["submit"])){
+    $titre= $_POST["titre"];
+    $photoCouverture= $_POST["photoCouverture"];
+    $description= $_POST["description"];
+    $idCategorie= $_POST["categorie"];
+    $enseignat= new Enseignant();
+    $nomberChapitre= $_POST["chapitres"];
+    $duree= $_POST["duree"];
+    $prix= $_POST["prix"];
+    $tags= $_POST["tags"];
+    $urlContenu= $_POST["urlContenu"];
+
+   }
+  
+  
+ 
+
+
+
+
+
   ?>
 
 
@@ -60,7 +95,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
     </style>
 </head>
 <body>
-<form action="../../../Controllers/recruteur/addOffre.php" method="post"  class="card max-w-sm mx-auto p-2">
+<form  method="post"  class="card max-w-sm mx-auto p-2">
             <div class="mb-2">
               <label
                 for="titre"
@@ -70,7 +105,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
               <input
                 type="titre"
                 id="titre"
-                name="post"
+                name="titre"
                 class="inputsText fullName bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Titre du cours"
                 required
@@ -100,7 +135,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
               <input
                 type="text"
                 id="photoJeuor"
-                name="photoCouverture"
+                name="urlContenu"
                 class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Entrer lien de cours"
                 required

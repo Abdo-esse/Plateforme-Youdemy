@@ -1,4 +1,8 @@
 <?php 
+namespace App\controller;
+require __DIR__ . '/../../vendor/autoload.php';  
+use App\class\CoursVedio;
+use App\Class\CoursTexte; 
 
 class CoursConroller
 {
