@@ -1,8 +1,9 @@
 <?php
 namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php'; 
-use App\Config\Connexion;
-use PDO;
+use App\model\Crud;
+use App\class\Enseignant;
+use App\class\Cours;
 
 
 class CoursTexte extends Cours 
@@ -13,10 +14,18 @@ class CoursTexte extends Cours
     {
         parent::__construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$id);
         $this->texteContenu=$texteContenu;
-        array_push($this->data,$this->texteContenu);
+        $this->data = array_merge($this->data, ["contenu" => $this->texteContenu]);
     }
 
     public function ajouter()
+    {
+        $this->id=Crud::createAction('cours', $this->data);
+        foreach($this->idTags as $idTag )
+       {
+        Crud::createAction('cours_tags',["idCours"=>$this->id,"idTags"=>$idTag]);
+       }
+    }
+    public function afficher()
     {
         $this->id=Crud::createAction('cours', $this->data);
         foreach($this->idTags as $idTag )

@@ -12,11 +12,9 @@ class CoursConroller
       $coursVedio= new CoursVedio($titre,$photoCouverture,$description,$idCategorie,$enseignant,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null);
       $coursVedio->ajouter();
    }
-   public function ajouterCoursText($titre,$photoCouverture,$description,$idCategorie,$enseignat,
-                                      $nomberChapitre,$duree,$prix,$tags,$texteContenu,$id=null)
+   public function ajouterCoursText($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$texteContenu,$id=null)
    {
-    $coursVedio= new CoursTexte($titre,$photoCouverture,$description,$idCategorie,$enseignat,
-                                 $nomberChapitre,$duree,$prix,$tags,$texteContenu,$id=null);
+    $coursVedio= new CoursTexte($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$texteContenu,$id=null);
     $coursVedio->ajouter();
    }
 

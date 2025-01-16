@@ -1,6 +1,13 @@
 <?php 
 
 session_start();
+require __DIR__ . '/../../../../../vendor/autoload.php'; 
+    use App\controller\CategorieC;
+    use App\controller\EnseignantController;
+    use App\controller\CoursConroller;
+    use App\controller\TagC;
+    use App\Class\Role; 
+    use App\Class\Enseignant; 
 
 if ( $_SESSION["userrole"]!="Enseignant") {
   
@@ -8,14 +15,53 @@ if ( $_SESSION["userrole"]!="Enseignant") {
    header("Location: ../auth/logIn.php"); 
    exit(); 
 }
-     require __DIR__ . '/../../../../../vendor/autoload.php'; 
-    use App\controller\CategorieC;
-    use App\controller\TagC;
 
- $categories= new CategorieC();
- $_SESSION["categories"]=$categories->readCategorieController();
- $tag= new TagC();
- $_SESSION["tag"]=$tag->readTagController();
+
+try {
+  $categories = new CategorieC();
+  $_SESSION["categories"] = $categories->readCategorieController();
+  
+  $tag = new TagC();
+  $_SESSION["tag"] = $tag->readTagController();
+  
+  
+  if (empty($_SESSION["categories"]) || empty($_SESSION["tag"])) {
+      throw new Exception("Les données sont manquantes !");
+  }
+  
+  // echo "Code exécuté avec succès !<br />";
+} catch (Exception $ex) {
+  echo "Erreur détectée : " . $ex->getMessage() . "<br />";
+}
+
+   if(isset($_POST["submit"])){
+    $titre= $_POST["titre"];
+    $photoCouverture= $_POST["photoCouverture"];
+    $description= $_POST["description"];
+    $idCategorie= $_POST["categorie"];
+    $roleEnseignant = new Role(2);
+    $enseignat= new Enseignant( $_SESSION["userName"],$_SESSION["useremail"],"",$roleEnseignant,"", $_SESSION["userid"]);
+    $nomberChapitre= $_POST["chapitres"];
+    $duree= $_POST["duree"];
+    $prix= $_POST["prix"];
+    $tags= $_POST["tags"];
+    $urlContenu= $_POST["urlContenu"];
+    $cours=new CoursConroller();
+    $courszz=$cours->ajouterCoursText($titre, $photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
+
+
+    header("Location: ../index.php");
+    exit(); 
+   }
+  
+  
+  
+ 
+
+
+
+
+
   ?>
 
 
@@ -25,7 +71,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours text</title>
+    <title>Cours Vedio</title>
       <!-- tailwind -->
     <!-- carousel -->
     <link
@@ -60,7 +106,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
     </style>
 </head>
 <body>
-<form action="../../../Controllers/recruteur/addOffre.php" method="post"  class="card max-w-sm mx-auto p-2">
+<form  method="post"  class="card max-w-sm mx-auto p-2">
             <div class="mb-2">
               <label
                 for="titre"
@@ -70,7 +116,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
               <input
                 type="titre"
                 id="titre"
-                name="post"
+                name="titre"
                 class="inputsText fullName bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Titre du cours"
                 required
@@ -91,21 +137,21 @@ if ( $_SESSION["userrole"]!="Enseignant") {
                 required
               />
             </div>
-          
             <div class="mb-2">
               <label
                 for="photoJeuor"
                 class="block mb-2 text-sm font-medium text-gray dark:text-gray"
-                >Contenue</label
+                >Cours </label
               >
-              <textarea
-               name="Contenue" 
-               id=""
-               class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
-               placeholder="Ajouter un Contenue du cours"
-               ></textarea>
+              <input
+                type="text"
+                id="photoJeuor"
+                name="urlContenu"
+                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                placeholder="Entrer lien de cours"
+                required
+              />
             </div>
-          
             <div class="mb-2">
               <label
                 for="photoJeuor"

@@ -48,6 +48,10 @@ try {
     $urlContenu= $_POST["urlContenu"];
     $cours=new CoursConroller();
     $courszz=$cours->ajouterCoursVedio($titre, $photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
+
+
+    header("Location: ../index.php");
+    exit(); 
    }
   
   

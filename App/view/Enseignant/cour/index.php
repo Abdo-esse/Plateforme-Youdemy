@@ -86,9 +86,9 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 
     <section class="grid grid-cols-1 ml-1.5 mt-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6">
     <!-- Carte 1 -->
-    <article class="bg-white rounded-xl shadow hover:shadow-md transition-shadow duration-300">
+    <article class="bg-white rounded-xl shadow hover:shadow-md transition-shadow duration-300" >
       <div class="relative">
-        <img src="/api/placeholder/400/250" alt="Image du cours" class="w-full h-40 object-cover rounded-t-xl">
+      <iframe class="w-full h-40 object-cover rounded-t-xl"  src="https://www.youtube.com/embed/Vq04T0Cwj5Y?si=rROURcKar5urcqHf"  frameborder="0" ></iframe>
         <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
           Nouveau
         </span>
@@ -161,8 +161,9 @@ if ( $_SESSION["userrole"]!="Enseignant") {
     </article>
      <!-- Carte 1 -->
      <article class="bg-white rounded-xl shadow hover:shadow-md transition-shadow duration-300">
-      <div class="relative">
-        <img src="https://www.gcommeuneidee.com/wp-content/uploads/2023/10/image_une.png" alt="Image du cours" class="w-full h-40 object-cover rounded-t-xl">
+      <div class="relative" >
+      <iframe class="w-full h-40 object-cover rounded-t-xl"  src="https://www.univ-usto.dz/images/coursenligne/Cours_thermodynamique_SAKER.pdf"  frameborder="0" ></iframe>
+
         <!-- Catégorie -->
         <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
           Développement Web
