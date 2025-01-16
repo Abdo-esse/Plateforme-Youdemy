@@ -41,13 +41,14 @@ try {
     $idCategorie= $_POST["categorie"];
     $roleEnseignant = new Role(2);
     $enseignat= new Enseignant( $_SESSION["userName"],$_SESSION["useremail"],"",$roleEnseignant,"", $_SESSION["userid"]);
+    $idEnseignat=$enseignat->getId();
     $nomberChapitre= $_POST["chapitres"];
     $duree= $_POST["duree"];
     $prix= $_POST["prix"];
     $tags= $_POST["tags"];
     $urlContenu= $_POST["urlContenu"];
     $cours=new CoursConroller();
-    $courszz=$cours->ajouterCours($titre, $photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
+    $courszz=$cours->ajouterCours($titre, $photoCouverture,$description,$idCategorie,$idEnseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
 
 
     header("Location: ../index.php");

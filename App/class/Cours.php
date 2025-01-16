@@ -3,7 +3,9 @@
  require __DIR__ . '/../../vendor/autoload.php'; 
 use App\Class\Enseignant; 
 use App\model\Crud;
+use App\Config\Connexion;
 use App\class\BaseModel;
+use PDO;
  class  Cours implements BaseModel
  {
     private $id;
@@ -12,7 +14,7 @@ use App\class\BaseModel;
     private $contenu;
     private $description;
     private $idCategorie;
-    private Enseignant $enseignant ;
+    private  $idEnseignant ;
     private $nomberChapitre;
     private $duree;
     private $prix;
@@ -20,7 +22,7 @@ use App\class\BaseModel;
     private $data;
 
 
-    public function __construct($titre,$photoCouverture,$description,$idCategorie,Enseignant $enseignant,$nomberChapitre,$duree,$prix,$idTags,$contenu,$id=null)
+    public function __construct( $titre="",$photoCouverture="",$description="",$idCategorie="",$idEnseignant="",$nomberChapitre="",$duree="",$prix="",$idTags=[],$contenu="",$id=null)
     {
         $this->id=$id;
         $this->titre=$titre;
@@ -28,7 +30,7 @@ use App\class\BaseModel;
         $this->description=$description;
         $this->contenu=$contenu;
         $this->idCategorie=$idCategorie;
-        $this->enseignant=$enseignant;
+        $this->idEnseignant=$idEnseignant;
         $this->nomberChapitre=$nomberChapitre;
         $this->duree=$duree;
         $this->prix=$prix;
@@ -42,7 +44,7 @@ use App\class\BaseModel;
             "nomberChapitre" => "$this->nomberChapitre",
             "duree" => "$this->duree",
             "prix" => "$this->prix",
-            "idEnseignant" => $this->enseignant->getId() 
+            "idEnseignant" => $this->idEnseignant
         ];
 
     }
@@ -56,13 +58,22 @@ use App\class\BaseModel;
     
     }
     public function readAll(){
-
-
-    }
+       $conn = Connexion::connexion(); 
+       $sql="SELECT cours.id,cours.titre,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
+            from cours
+            JOIN users on users.id=cours.idEnseignant
+            join categories on categories.id=cours.idCategorie
+            join cours_tags on cours_tags.idCours=cours.id
+            join tags on tags.id=cours_tags.idTags
+            GROUP by cours.id";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
     public function readOne(){
 
 
-    }
+    } 
     public function daletAction(){
 
 

@@ -3,7 +3,6 @@
 session_start();
 require __DIR__ . '/../../../../../vendor/autoload.php'; 
     use App\controller\CategorieC;
-    use App\controller\EnseignantController;
     use App\controller\CoursConroller;
     use App\controller\TagC;
     use App\Class\Role; 
