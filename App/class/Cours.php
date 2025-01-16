@@ -3,6 +3,7 @@
 
  abstract class  Cours
  {
+    private $id;
     private $titre;
     private $photoCouverture;
     private $description;
@@ -11,10 +12,11 @@
     private $nomberChapitre;
     private $duree;
     private $prix;
-    private array $tags;
+    private array $idTags;
+    private $data;
 
 
-    public function __construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags)
+    public function __construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$idTags)
     {
         $this->titre=$titre;
         $this->photoCouverture=$photoCouverture;
@@ -24,7 +26,17 @@
         $this->nomberChapitre=$nomberChapitre;
         $this->duree=$duree;
         $this->prix=$prix;
-        $this->tags=$tags;
+        $this->idTags=$idTags;
+        $this->data = [
+            "titre" => " $this->titre",
+            "photoCouverture" => "$this->photoCouverture",
+            "description" => "$this->description",
+            "idCategorie" => "$this->idCategorie",
+            "nomberChapitre" => "$this->nomberChapitre",
+            "duree" => "$this->duree",
+            "prix" => "$this->prix",
+            "idEnseignant" => $this->enseignat->getId() 
+        ];
 
     }
 
