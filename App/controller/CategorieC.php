@@ -20,30 +20,30 @@ class CategorieC
      public function addCategorieController()
      {
         $categorie=new Categorie($this->name, $this->idAdmin);
-        $categorie->addCategorie();
+        $categorie->addAction();
      }
      public function readCategorieController()
      {
         $categorie=new Categorie();
-        return $categorie->readAllCategorie();
+        return $categorie->readAll();
      }
      public function readOneCategorieController($id)
      {
         $categorie=new Categorie();
         $categorie->setId($id);
-        return $categorie->readCategorie();
+        return $categorie->readOne();
      }
      public function daletCategorieController($id)
      {
         $categorie=new Categorie();
         $categorie->setId($id);
         $categorie->setDateDalet(date("Y-m-d"));
-        $categorie->daletCategorie();
+        $categorie->daletAction();
      }
      public function updateCategorieController()
      {
         $categorie=new Categorie($this->name,$this->idAdmin,$this->id);
-        $categorie->updateCategorie();
+        $categorie->updateAction();
      }
     
 }

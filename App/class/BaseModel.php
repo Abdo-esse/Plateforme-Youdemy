@@ -1,5 +1,5 @@
 <?php
-
+namespace App\class;
 
 interface BaseModel {
   public function addAction();
