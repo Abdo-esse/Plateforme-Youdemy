@@ -5,14 +5,14 @@ use App\Config\Connexion;
 use PDO;
 
 
-class CoursVedio extends Cours 
+class CoursTexte extends Cours 
 {
-    private $urlContenu;
+    private $texteContenu;
 
-    public function __construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu)
+    public function __construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags,$texteContenu)
     {
         parent::__construct($titre,$photoCouverture,$description,$idCategorie,$enseignat,$nomberChapitre,$duree,$prix,$tags);
-        $this->urlContenu=$urlContenu;
+        $this->texteContenu=$texteContenu;
     }
 
     public function ajouter()
