@@ -23,9 +23,11 @@ class CoursConroller
    {
      return  $this->coursModel->readAll();
    }
-   public function publierCours()
+   public function publierCours($id,$isPublier)
    {
-     return  $this->coursModel->readAll();
+     $this->coursModel->setId($id);
+     $this->coursModel->setPublier($isPublier);
+     $this->coursModel->publier();
    }
   
 

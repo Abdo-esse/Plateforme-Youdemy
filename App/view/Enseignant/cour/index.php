@@ -163,7 +163,7 @@ $cours = new CoursConroller();
 
     <div class="flex justify-between items-center">
       <span class="text-blue-600 font-bold"><?php echo $cours->prix?> €</span>
-      <a href="">
+      <a href="./publier.php?id=<?php echo $cours->id?>">
       <button  class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-lg transition-colors">
         Publier
       </button>
