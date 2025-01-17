@@ -6,16 +6,26 @@ use App\class\Cours;
 
 class CoursConroller
 {
-    
-   public function ajouterCours($titre="",$photoCouverture="",$description="",$idCategorie="",$idEnseignant="",$nomberChapitre="",$duree="",$prix="",$tags=[],$urlContenu="",$id=null)
+   private $coursModel;
+
+   public function __construct( $titre="",$photoCouverture="",$description="",$idCategorie="",$idEnseignant="",$nomberChapitre="",$duree="",$prix="",$idTags=[],$contenu="",$id=null)
+    {
+         $this->coursModel= new Cours($titre,$photoCouverture,$description,$idCategorie,$idEnseignant,$nomberChapitre,$duree,$prix,$idTags,$contenu,$id=null);
+
+    }
+
+   public function ajouterCours()
    {
-      $coursVedio= new Cours($titre,$photoCouverture,$description,$idCategorie,$idEnseignant,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$id=null);
-      $coursVedio->addAction();
+     $this->coursModel->addAction();
    }
+
    public function afficherCours()
    {
-      $coursVedio= new Cours();
-      return $coursVedio->readAll();
+     return  $this->coursModel->readAll();
+   }
+   public function publierCours()
+   {
+     return  $this->coursModel->readAll();
    }
   
 

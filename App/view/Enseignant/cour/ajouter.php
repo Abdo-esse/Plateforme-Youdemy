@@ -1,5 +1,13 @@
-<?php
+<?php 
+
 session_start();
+require __DIR__ . '/../../../../vendor/autoload.php'; 
+    use App\controller\CategorieC;
+    use App\controller\EnseignantController;
+    use App\controller\CoursConroller;
+    use App\controller\TagC;
+    use App\Class\Role; 
+    use App\Class\Enseignant; 
 
 if ( $_SESSION["userrole"]!="Enseignant") {
   
@@ -7,32 +15,88 @@ if ( $_SESSION["userrole"]!="Enseignant") {
    header("Location: ../auth/logIn.php"); 
    exit(); 
 }
+
+
+try {
+  $categories = new CategorieC();
+  $_SESSION["categories"] = $categories->readCategorieController();
+  
+  $tag = new TagC();
+  $_SESSION["tag"] = $tag->readTagController();
+  
+  
+  if (empty($_SESSION["categories"]) || empty($_SESSION["tag"])) {
+      throw new Exception("Les données sont manquantes !");
+  }
+  
+  // echo "Code exécuté avec succès !<br />";
+} catch (Exception $ex) {
+  echo "Erreur détectée : " . $ex->getMessage() . "<br />";
+}
+
+   if(isset($_POST["submit"])){
+    $titre= $_POST["titre"];
+    $photoCouverture= $_POST["photoCouverture"];
+    $description= $_POST["description"];
+    $idCategorie= $_POST["categorie"];
+    $roleEnseignant = new Role(2);
+    $enseignat= new Enseignant( $_SESSION["userName"],$_SESSION["useremail"],"",$roleEnseignant,"", $_SESSION["userid"]);
+    $idEnseignat=$enseignat->getId();
+    $nomberChapitre= $_POST["chapitres"];
+    $duree= $_POST["duree"];
+    $prix= $_POST["prix"];
+    $tags= $_POST["tags"];
+    $urlContenu= $_POST["urlContenu"];
+    $cours=new CoursConroller($titre, $photoCouverture,$description,$idCategorie,$idEnseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
+    $courszz=$cours->ajouterCours();
+
+
+    header("Location: ./index.php");
+    exit(); 
+   }
+  
+  
+  
+ 
+
+
+
+
+
   ?>
+
+
+
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   
-       <!-- font -->
-       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- tailwind -->
+    <title>Cours Vedio</title>
+      <!-- tailwind -->
     <!-- carousel -->
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              clifford: '#da373d',
-            }
-          }
-        }
-      }
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
     </script>
     <style type="text/tailwindcss">
       @layer utilities {
@@ -41,64 +105,174 @@ if ( $_SESSION["userrole"]!="Enseignant") {
         }
       }
     </style>
+</head>
+<body>
+<form  method="post"  class="card max-w-sm mx-auto p-2">
+            <div class="mb-2">
+              <label
+                for="titre"
+                class="block mb-2 text-sm font-medium text-gray"
+                >Titre</label
+              >
+              <input
+                type="titre"
+                id="titre"
+                name="titre"
+                class="inputsText fullName bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                placeholder="Titre du cours"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="photoJeuor"
+                class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                >photo couverture </label
+              >
+              <input
+                type="text"
+                id="photoJeuor"
+                name="photoCouverture"
+                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                placeholder="Entrer lien de limage"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="photoJeuor"
+                class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                >Cours </label
+              >
+              <input
+                type="text"
+                id="photoJeuor"
+                name="urlContenu"
+                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                placeholder="Entrer lien de cours"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="photoJeuor"
+                class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                >Description</label
+              >
+              <textarea
+               name="description" 
+               id=""
+               class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+               placeholder="Ajouter un description"
+               ></textarea>
+            </div>
+            <div class="md:flex gap-2">
+              <div class="mb-2">
+                <label
+                  for="countries"
+                  class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                  >Catégorie</label
+                >
+                <select
+                  id="countries"
+                  name="categorie"
+                  class="selectInput positionInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                >
+                  <option onch value="">Choisai une  Catégorie</option>
+                  <?php 
+          foreach ($_SESSION["categories"] as $categorie) {
+            if ($categorie->dateDelete == null)  {
+                    ?>
+                         <option value="<?php echo  $categorie->id ?>"><?php echo  $categorie->name ?></option>
+                  <?php
+                   } 
+            }
+            ?>
+              </select>
+              </div>
 
+              <div class="mb-2">
+                  <label
+                    for="nationality"
+                    class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                    >Nombre des chapitres</label
+                  >
+                  <input
+               type="number"  name="chapitres" min="1" 
+             
+                    class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entrer la durée du cours"
+                required
+              />
+                 
+                </div>
+              
+            </div>
+            
+            <div class="mb-2">
+                  <label
+                    for="nationality"
+                    class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                    >Durée</label
+                  >
+                  <input
+               type="number"  name="duree" min="1" max="100"
+             
+                    class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entrer la durée du cours"
+                required
+              />
+                 
+                </div>
+              <div class="mb-2">
+                  <label
+                    for="nationality"
+                    class="block mb-2 text-sm font-medium text-gray dark:text-gray"
+                    >Prix</label
+                  >
+                  <input
+               type="number"  name="prix" min="1" 
+             
+                    class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entrer la prix du cours"
+                required
+              />
+                 
+                
+              
+            </div>
+            <div class="mb-2">
+            <label for="tags" class="block text-sm font-medium text-gray-400">Tags</label>
+                <select 
+                    id="tags" 
+                    name="tags[]" 
+                    multiple 
+                    class="bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
+                >
+                <?php
+            //  foreach ($_SESSION["tags"] as $tagItem) {
+                foreach ($_SESSION["tag"] as $tag) {
+                    if ($tag->dateDelete == null) {
+                    ?>
+                    <option value=" <?php echo  $tag->id?>" ><?php  echo  $tag->name?></option>
+                <?php
+                }
+             } 
+            ?>
+                   
+                </select>
+            </div>
 
- <!-- link css -->
- <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" href="assets/images/logo/faveicon.webp" type="image/x-icon">
-    <title> Youdemy | Add Cours</title>
-  </head>
-<body class="bg-gray-100 min-h-screen">
-  <div class="container mx-auto px-4 py-8">
-    <!-- En-tête -->
-    <h1 class="text-2xl font-bold text-center mb-8">Ajouter un nouveau cours</h1>
-
-    <!-- Conteneur divisé -->
-    <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-      <!-- Section Cours Vidéo -->
-      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <!-- Icône Vidéo -->
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-          </div>
-          
-          <h2 class="text-xl font-semibold text-gray-800">Cours Vidéo</h2>
-          <p class="text-gray-600 mb-4">Créez un cours avec du contenu vidéo interactif</p>
-          
-          <a href="./video/ajouter.php" class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
-            <span>Ajouter un cours vidéo</span>
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Section Cours Texte -->
-      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <!-- Icône Document -->
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
-          
-          <h2 class="text-xl font-semibold text-gray-800">Cours Texte</h2>
-          <p class="text-gray-600 mb-4">Créez un cours basé sur du contenu textuel</p>
-          
-          <a href="./texte/ajouter.php" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full max-w-xs">
-            <span>Ajouter un cours texte</span>
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+            <button
+              type="submit"
+              name="submit"
+              class="sendData text-gray bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              submit
+            </button>
+            <div>
+              
+            </div>
+          </form>
 </body>
 </html>

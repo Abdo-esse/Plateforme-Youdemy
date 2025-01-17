@@ -19,6 +19,7 @@ use PDO;
     private $duree;
     private $prix;
     private array $idTags;
+    private  bool $isPublier;
     private $data;
 
 
@@ -49,6 +50,11 @@ use PDO;
 
     }
 
+    public function getData(){return $this->data;}
+    public function getId(){return  $this->id;}
+    public function setId($id){  $this->id=$id;}
+    public function setPublier($isPublier){ $this->isPublier=$isPublier;}
+    
     public function addAction(){
         $this->id=Crud::createAction('cours', $this->data);
         foreach($this->idTags as $idTag )
@@ -59,7 +65,7 @@ use PDO;
     }
     public function readAll(){
        $conn = Connexion::connexion(); 
-       $sql="SELECT cours.id,cours.titre,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
+       $sql="SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
             from cours
             JOIN users on users.id=cours.idEnseignant
             join categories on categories.id=cours.idCategorie
@@ -82,6 +88,9 @@ use PDO;
 
 
     }
-    public function getData(){return $this->data;}
+    public function publier(){
+
+        Crud::updateAction('cours', $this->id,["isPublier"=>"$this->isPublier"]);
+    }
 
  }

@@ -13,7 +13,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 $roleEnseignant = new Role(2);
 $enseignant = new Enseignant($_SESSION["userName"], $_SESSION["useremail"], "", $roleEnseignant, "", $_SESSION["userid"]);
 $idEnseignant=$enseignant->getId();
-$cours = new CoursConroller('', '', '', '', $idEnseignant);
+$cours = new CoursConroller();
   $_SESSION["cours"]=$cours->afficherCours();
   // print_r($_SESSION["cours"])
   ?>
@@ -98,7 +98,7 @@ $cours = new CoursConroller('', '', '', '', $idEnseignant);
   
       <?php
              foreach ($_SESSION["cours"] as $cours) {
-                if ($cours->dateDelete == null && $cours->isPublier==0) {
+                if ($cours->dateDelete == null && $cours->isPublier==0 && $cours->idEnseignant==$_SESSION["userid"] ) {
                   $tagsArray = explode(',', $cours->tags);
                  
                         ?>
