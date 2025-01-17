@@ -283,7 +283,7 @@ if(isset($_GET["id"]))
 
                   
                  foreach ($_SESSION["tag"] as $tag) {
-                    if ($tag->dateDelete == null && !$tag->id!=array_keys($tagsArray)) {
+                    if ($tag->dateDelete === null && !in_array($tag->id, array_keys($tagsArray))) {
                     ?>
                     <option value=" <?php echo  $tag->id?>" ><?php  echo  $tag->name?></option>
                  <?php

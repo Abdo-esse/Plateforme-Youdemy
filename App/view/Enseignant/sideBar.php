@@ -26,6 +26,21 @@
             </a>
          </li>
          <li>
+            <a href="http://localhost/Plateforme-Youdemy/App/View/enseignant/cour/index.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" stroke="currentColor" stroke-width="2"/>
+    <path d="M12 4V20" stroke="currentColor" stroke-width="2"/>
+    <path d="M7 8H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M7 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M15 8H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M15 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M7 16H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M15 16H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Cours</span>
+            </a>
+         </li>
+         <li>
             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
