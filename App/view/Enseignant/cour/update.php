@@ -47,6 +47,7 @@ if(isset($_GET["id"]))
 
 
    if(isset($_POST["submit"])){
+    $idCours=$_GET["id"];
     $titre= $_POST["titre"];
     $photoCouverture= $_POST["photoCouverture"];
     $description= $_POST["description"];
@@ -58,9 +59,11 @@ if(isset($_GET["id"]))
     $duree= $_POST["duree"];
     $prix= $_POST["prix"];
     $tags= $_POST["tags"];
+    // print_r($tags);
     $urlContenu= $_POST["urlContenu"];
-    $cours=new CoursConroller($titre, $photoCouverture,$description,$idCategorie,$idEnseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu);
-    $cours->ajouterCours();
+    $cours=new CoursConroller($titre, $photoCouverture,$description,$idCategorie,$idEnseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$idCours);
+    // print_r($cours);
+    $cours->updateCours();
 
 
     header("Location: ./index.php");
@@ -174,11 +177,10 @@ if(isset($_GET["id"]))
               >
               <textarea
                name="description" 
-               value="<?php echo $_SESSION["cour"]->description?>"
                id=""
                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                placeholder="Ajouter un description"
-               ></textarea>
+               ><?php echo $_SESSION["cour"]->description?></textarea>
             </div>
             <div class="md:flex gap-2">
               <div class="mb-2">

@@ -69,9 +69,11 @@ class Crud
 
 
       static function deleteAction($tabel,$id){
-        $sql="DELETE FROM $tabel WHERE id = ?";
-        $stmt = Connexion :: $conn->prepare($sql);
-        $stmt->execute([$id]);
+        $conn = Connexion::connexion();
+        $column = key($wher);
+        $sql="DELETE FROM $tabel WHERE $column= ?";
+        $stmt= $conn->prepare($sql);
+        $stmt->execute(array_values($wher));
       }
 
 

@@ -53,6 +53,7 @@ use PDO;
 
     public function getData(){return $this->data;}
     public function getId(){return  $this->id;}
+    public function gettags(){return  $this->idTags;}
     public function setId($id){  $this->id=$id;}
     public function setPublier($isPublier){ $this->isPublier=$isPublier;}
     public function setDateDelete($dateDelete){ $this->dateDelete=$dateDelete;}
@@ -97,12 +98,46 @@ use PDO;
         Crud::updateAction('cours', $this->id,["dateDelete"=>$this->dateDelete]);
      }
     public function updateAction(){
-
+        Crud::updateAction('cours', $this->id,$this->data);
+        $this->updateCoursTags();
 
     }
     public function publier(){
 
         Crud::updateAction('cours', $this->id,["isPublier"=>"$this->isPublier"]);
+       
+    }
+
+    public function updateCoursTags()
+    {
+        $conn = Connexion::connexion(); 
+        $conn->beginTransaction(); // Démarrer la transaction
+
+try {
+    // Suppression des tags existants
+    $sqlDelete = "DELETE FROM cours_tags WHERE idCours = ?";
+    $stmt = $conn->prepare($sqlDelete);
+    if (!$stmt->execute([$this->id])) {
+        throw new PDOException("Erreur lors de la suppression des tags."); // Lever une exception manuellement
+    }
+
+    // Insertion des nouveaux tags
+    foreach($this->idTags as $idTag )
+    {
+    $sqlInsert = "INSERT INTO cours_tags (idCours, idTags) VALUES (?, ?)";
+    $stmt = $conn->prepare($sqlInsert);
+    if (!$stmt->execute([$this->id, $idTag])) {
+        throw new PDOException("Erreur lors de l'insertion des nouveaux tags."); // Lever une exception manuellement
+    }
+    }
+    $conn->commit(); // Valider la transaction
+    echo "Transaction réussie.";
+} catch (PDOException $e) {
+    $conn->rollBack(); // Annuler la transaction en cas d'erreur
+    echo "Erreur : " . $e->getMessage();
+}
+
+
     }
 
  }

@@ -10,7 +10,7 @@ class CoursConroller
 
    public function __construct( $titre="",$photoCouverture="",$description="",$idCategorie="",$idEnseignant="",$nomberChapitre="",$duree="",$prix="",$idTags=[],$contenu="",$id=null)
     {
-         $this->coursModel= new Cours($titre,$photoCouverture,$description,$idCategorie,$idEnseignant,$nomberChapitre,$duree,$prix,$idTags,$contenu,$id=null);
+         $this->coursModel= new Cours($titre,$photoCouverture,$description,$idCategorie,$idEnseignant,$nomberChapitre,$duree,$prix,$idTags,$contenu,$id);
 
     }
 
@@ -39,6 +39,11 @@ class CoursConroller
    {
      $this->coursModel->setId($id);
      return $this->coursModel->readOne();
+   }
+   public function updateCours()
+   {
+     
+     $this->coursModel->updateAction();
    }
   
 
