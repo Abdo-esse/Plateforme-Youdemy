@@ -7,7 +7,7 @@ if ( $_SESSION["userrole"]!="Administrateur") {
     session_destroy();
     header("Location: ../auth/logIn.php"); 
     exit(); 
- }?>
+ }
 
 if (isset($_POST['submit'])) {
   $tagTitle=$_POST["tags"];

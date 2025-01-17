@@ -2,8 +2,9 @@
 namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php';  
 use App\model\Crud;
+use App\class\BaseModel;
 
-class Tag
+class Tag implements BaseModel
 {
     private $id ;
     private $name;
@@ -26,23 +27,23 @@ class Tag
      public function setName($name){ $this->name=$name;}
      public function setDateDalet($dateDelete){ $this->dateDelete=$dateDelete;}
 
-     public function addtag()
+     public function addAction()
      {
         Crud::createAction('tags',$this->data);
      }
-     public function readAlltag()
+     public function readAll()
      {
         return Crud::readAll('tags');
      }
-     public function readTag()
+     public function readOne()
      {
         return Crud::readAction('tags',["id"=>$this->id]);
      }
-     public function daletTag()
+     public function daletAction()
      {
         Crud::updateAction('tags', $this->id,["dateDelete"=>$this->dateDelete]);
      }
-     public function updatetag()
+     public function updateAction()
      {
         Crud::updateAction('tags', $this->id,["name"=>"$this->name"]);
         

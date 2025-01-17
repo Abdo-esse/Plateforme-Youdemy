@@ -40,3 +40,26 @@ use  Youdemy;
     dateDelete date , 
     Foreign Key (idAdmin) REFERENCES users(id)
 ); 
+
+CREATE Table cours (
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   titre VARCHAR(150),
+   photoCouverture TEXT,
+   contenu TEXT,
+   description TEXT,
+   idEnseignant int ,
+   idCategorie int,
+   nomberChapitre int,
+   duree int,
+   prix int,
+   dateCreation date DEFAULT current_timestamp(), 
+   dateDelete date ,
+   Foreign Key (idEnseignant) REFERENCES users(id)
+);
+
+CREATE Table cours_tags(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   idCours INT ,
+   idTags INT
+);
+DROP Table courstags;

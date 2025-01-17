@@ -2,8 +2,9 @@
 namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php';  
 use App\model\Crud;
+use App\class\BaseModel;
 
-class Categorie
+class Categorie implements BaseModel
 {
     private $id ;
     private $name;
@@ -26,24 +27,24 @@ class Categorie
      public function setName($name){ $this->name=$name;}
      public function setDateDalet($dateDelete){ $this->dateDelete=$dateDelete;}
 
-     public function addCategorie()
+     public function addAction()
      {
         Crud::createAction('categories',$this->data);
      }
-     public function readAllCategorie()
+     public function readAll()
      {
         return Crud::readAll('categories');
      }
-     public function readCategorie()
+     public function readOne()
      {
         return Crud::readAction('categories',["id"=>$this->id]);
      }
 
-     public function daletCategorie()
+     public function daletAction()
      {
         Crud::updateAction('categories', $this->id,["dateDelete"=>$this->dateDelete]);
      }
-     public function updateCategorie()
+     public function updateAction()
      {
         Crud::updateAction('categories', $this->id,["name"=>"$this->name"]);
      }

@@ -7,7 +7,7 @@ if ( $_SESSION["userrole"]!="Administrateur") {
     session_destroy();
     header("Location: ../auth/logIn.php"); 
     exit(); 
- }?> 
+ }
 
 if (isset($_GET['id'])) {
     $tag = new TagC();
