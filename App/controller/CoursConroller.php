@@ -35,6 +35,11 @@ class CoursConroller
      $this->coursModel->setDateDelete(date("Y-m-d"));
      $this->coursModel->daletAction();
    }
+   public function readCour($id)
+   {
+     $this->coursModel->setId($id);
+     return $this->coursModel->readOne();
+   }
   
 
 }

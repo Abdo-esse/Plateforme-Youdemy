@@ -15,23 +15,36 @@ if ( $_SESSION["userrole"]!="Enseignant") {
    exit(); 
 }
 
+if(isset($_GET["id"]))
+{
+    try {
+        $categories = new CategorieC();
+        $_SESSION["categories"] = $categories->readCategorieController();
+        
+        $tag = new TagC();
+        $_SESSION["tag"] = $tag->readTagController();
+        
+        $cour = new CoursConroller();
+        $_SESSION["cour"] = $cour->readCour($_GET["id"]);
+       
+        $tags = explode(',', $_SESSION["cour"]->arrayTags);
+        $tagsArray=[];
+        foreach ($tags as $tag) {
+        list($key, $value) = explode('=>', $tag);
+        $tagsArray[$key] = $value;
+        }
 
-try {
-  $categories = new CategorieC();
-  $_SESSION["categories"] = $categories->readCategorieController();
-  
-  $tag = new TagC();
-  $_SESSION["tag"] = $tag->readTagController();
-  
-  
-  if (empty($_SESSION["categories"]) || empty($_SESSION["tag"])) {
-      throw new Exception("Les données sont manquantes !");
-  }
-  
-  // echo "Code exécuté avec succès !<br />";
-} catch (Exception $ex) {
-  echo "Erreur détectée : " . $ex->getMessage() . "<br />";
+
+        if (empty($_SESSION["categories"]) || empty($_SESSION["tag"])) {
+            throw new Exception("Les données sont manquantes !");
+        }
+        
+        // echo "Code exécuté avec succès !<br />";
+      } catch (Exception $ex) {
+        echo "Erreur détectée : " . $ex->getMessage() . "<br />";
+      }
 }
+
 
    if(isset($_POST["submit"])){
     $titre= $_POST["titre"];
@@ -54,15 +67,7 @@ try {
     exit(); 
    }
   
-  
-  
- 
-
-
-
-
-
-  ?>
+?>
 
 
 
@@ -107,6 +112,12 @@ try {
 </head>
 <body>
 <form  method="post"  class="card max-w-sm mx-auto p-2">
+<?php
+        //   !foreach ($_SESSION["cours"] as $cours) {
+        //         if ($cours->dateDelete == null && $cours->isPublier==0 && $cours->idEnseignant==$_SESSION["userid"] ) {
+        //           $tagsArray = explode(',', $cours->tags);
+                 
+                        ?>
             <div class="mb-2">
               <label
                 for="titre"
@@ -116,6 +127,7 @@ try {
               <input
                 type="titre"
                 id="titre"
+                value="<?php echo $_SESSION["cour"]->titre?>"
                 name="titre"
                 class="inputsText fullName bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Titre du cours"
@@ -131,6 +143,7 @@ try {
               <input
                 type="text"
                 id="photoJeuor"
+                value="<?php echo $_SESSION["cour"]->photoCouverture?>"
                 name="photoCouverture"
                 class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Entrer lien de limage"
@@ -146,6 +159,7 @@ try {
               <input
                 type="text"
                 id="photoJeuor"
+                value="<?php echo $_SESSION["cour"]->contenu?>"
                 name="urlContenu"
                 class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 placeholder="Entrer lien de cours"
@@ -160,6 +174,7 @@ try {
               >
               <textarea
                name="description" 
+               value="<?php echo $_SESSION["cour"]->description?>"
                id=""
                class="inputsLien photoInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                placeholder="Ajouter un description"
@@ -177,16 +192,21 @@ try {
                   name="categorie"
                   class="selectInput positionInputs bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
                 >
-                  <option onch value="">Choisai une  Catégorie</option>
-                  <?php 
-          foreach ($_SESSION["categories"] as $categorie) {
-            if ($categorie->dateDelete == null)  {
+                <option selected value="<?php echo $_SESSION['cour']->idCategorie; ?>">
+                     <?php echo $_SESSION['cour']->categories; ?>
+                </option>
+                 <?php 
+                 foreach ($_SESSION['categories'] as $categorie) {
+   
+                  if ($categorie->dateDelete == null && $categorie->id != $_SESSION['cour']->idCategorie) {
+                 ?>
+                    <option value="<?php echo $categorie->id; ?>">
+                   <?php echo $categorie->name ?>
+                   </option>
+                    <?php
+                       } 
+                       }
                     ?>
-                         <option value="<?php echo  $categorie->id ?>"><?php echo  $categorie->name ?></option>
-                  <?php
-                   } 
-            }
-            ?>
               </select>
               </div>
 
@@ -198,7 +218,7 @@ try {
                   >
                   <input
                type="number"  name="chapitres" min="1" 
-             
+                 value="<?php echo $_SESSION["cour"]->nomberChapitre?>"
                     class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entrer la durée du cours"
                 required
@@ -216,7 +236,7 @@ try {
                   >
                   <input
                type="number"  name="duree" min="1" max="100"
-             
+                  value="<?php echo $_SESSION["cour"]->duree?>"
                     class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entrer la durée du cours"
                 required
@@ -231,7 +251,7 @@ try {
                   >
                   <input
                type="number"  name="prix" min="1" 
-             
+                value="<?php echo $_SESSION["cour"]->prix?>"
                     class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entrer la prix du cours"
                 required
@@ -247,17 +267,28 @@ try {
                     name="tags[]" 
                     multiple 
                     class="bg-gray-50 border border-gray-300 outline-none text-gray text-sm rounded-lg focus:ring-0 focus:border-transparent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray"
-                >
-                <?php
-            //  foreach ($_SESSION["tags"] as $tagItem) {
-                foreach ($_SESSION["tag"] as $tag) {
-                    if ($tag->dateDelete == null) {
+                 >
+                 <?php 
+                 foreach ($tagsArray as $key => $value) {
+                 ?>
+                  <option
+                 selected 
+                 value="<?php echo $key; ?>">
+                   <?php echo ($value); ?>
+                  </option>
+                 <?php
+                 }
+
+                  
+                 foreach ($_SESSION["tag"] as $tag) {
+                    if ($tag->dateDelete == null && !$tag->id!=array_keys($tagsArray)) {
                     ?>
                     <option value=" <?php echo  $tag->id?>" ><?php  echo  $tag->name?></option>
-                <?php
-                }
-             } 
-            ?>
+                 <?php
+
+                 }
+                 } 
+                 ?>
                    
                 </select>
             </div>

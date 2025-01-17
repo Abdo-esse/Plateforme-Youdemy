@@ -79,8 +79,19 @@ use PDO;
         return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
     public function readOne(){
-
-
+        $conn = Connexion::connexion(); 
+        $sql="SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.idCategorie,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags,GROUP_CONCAT(tags.id, '=>',tags.name) AS arrayTags
+             from cours
+             JOIN users on users.id=cours.idEnseignant
+             join categories on categories.id=cours.idCategorie
+             join cours_tags on cours_tags.idCours=cours.id
+             join tags on tags.id=cours_tags.idTags
+             Where cours.id=?
+             GROUP by cours.id";
+         $stmt=$conn->prepare($sql);
+         $stmt->execute([$this->id]);
+         return $stmt->fetch(PDO::FETCH_OBJ);
+        
     } 
     public function daletAction(){
         Crud::updateAction('cours', $this->id,["dateDelete"=>$this->dateDelete]);
