@@ -29,6 +29,12 @@ class CoursConroller
      $this->coursModel->setPublier($isPublier);
      $this->coursModel->publier();
    }
+   public function daleteCours($id)
+   {
+     $this->coursModel->setId($id);
+     $this->coursModel->setDateDelete(date("Y-m-d"));
+     $this->coursModel->daletAction();
+   }
   
 
 }

@@ -13,9 +13,8 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 if (isset($_GET["id"]))
 {
     $id=$_GET["id"];
-    $isPublier= true;
-    $publierCours=new CoursConroller();
-    $publierCours->publierCours($id,$isPublier);
+    $deleteCour=new CoursConroller();
+    $deleteCour->daleteCours($id);
     header("Location: ./index.php");
     exit();
 }

@@ -20,6 +20,7 @@ use PDO;
     private $prix;
     private array $idTags;
     private  bool $isPublier;
+    private   $dateDelete;
     private $data;
 
 
@@ -54,6 +55,7 @@ use PDO;
     public function getId(){return  $this->id;}
     public function setId($id){  $this->id=$id;}
     public function setPublier($isPublier){ $this->isPublier=$isPublier;}
+    public function setDateDelete($dateDelete){ $this->dateDelete=$dateDelete;}
     
     public function addAction(){
         $this->id=Crud::createAction('cours', $this->data);
@@ -81,9 +83,8 @@ use PDO;
 
     } 
     public function daletAction(){
-
-
-    }
+        Crud::updateAction('cours', $this->id,["dateDelete"=>$this->dateDelete]);
+     }
     public function updateAction(){
 
 
