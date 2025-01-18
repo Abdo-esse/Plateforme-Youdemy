@@ -1,10 +1,17 @@
-<?php
-class Paginator {
+<?php 
+namespace App\model;
+
+
+require __DIR__ . '/../../vendor/autoload.php';
+use App\Config\Connexion;
+use PDO;
+
+class Pagination  {
  
     private $table;
     private $nbrElementPerPage;
 
-    public function __construct(  $table, int $nbrElementPerPage = 6) {
+    public function __construct(  $table,  $nbrElementPerPage = 6) {
         $this->table = $table;
         $this->nbrElementPerPage = $nbrElementPerPage;
     }
@@ -20,8 +27,9 @@ class Paginator {
 
     // Récupérer les données paginées
     public function getData( $page) {
+        $conn = Connexion::connexion();
         $debut = ($page - 1) * $this->nbrElementPerPage;
-        $query = $this->pdo->prepare("SELECT * FROM {$this->table} ORDER BY id LIMIT ?, ?");
+        $query = $conn->prepare("SELECT * FROM {$this->table} ORDER BY id LIMIT ?, ?");
         $query->execute([$debut,$this->nbrElementPerPage]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

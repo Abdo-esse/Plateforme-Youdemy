@@ -1,10 +1,5 @@
 <?php 
-namespace App\model;
 
-
-require __DIR__ . '/../../vendor/autoload.php';
-use App\Config\Connexion;
-use PDO;
 
 class Pagination 
 {
@@ -18,7 +13,7 @@ class Pagination
         $countResult=$stmt->fetch(PDO::FETCH_ASSOC);
         return $countResult['total'];
     }
-    
+
     static public function nbrdonnesPagines($table,$debut,$nbrElement){
         $conn = Connexion::connexion();
         $sql="SELECT * FROM $table ORDER BY id LIMIT ? , ?";

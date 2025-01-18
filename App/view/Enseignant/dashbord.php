@@ -1,12 +1,24 @@
 <?php
 session_start();
+require __DIR__ . '/../../../vendor/autoload.php';
 
+use App\controller\PaginationController;
 if ( $_SESSION["userrole"]!="Enseignant") {
   
    session_destroy();
    header("Location: ../auth/logIn.php"); 
    exit(); 
-}?>
+   }
+  //  if(isset($_GET["page"])){
+  //   $page=$_GET["page"];
+  //  } 
+  //  else{
+  //   $page=1;
+  //  }
+   $pagination=new PaginationController("cours");
+   print_r($pagination->getDataController(2));
+   
+   ?>
 
     <!DOCTYPE html>
     <html lang="en">
