@@ -175,6 +175,8 @@ $cours = new CoursConroller();
                 }
                 }
             ?>
+
+
   </section>
 </div>
 </div>
