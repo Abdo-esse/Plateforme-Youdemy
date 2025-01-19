@@ -18,30 +18,30 @@ class TagC
      public function addTagController()
      {
         $tag=new Tag($this->name, $this->idAdmin);
-        $tag->addtag();
+        $tag->addAction();
      }
      public function readTagController()
      {
         $tag=new Tag();
-        return $tag->readAllTag();
+        return $tag->readAll();
      }
      public function readOneTagController($id)
      {
         $tag=new Tag();
         $tag->setId($id);
-        return $tag->readTag();
+        return $tag->readOne();
      }
      public function daletTagController($id)
      {
         $tag=new Tag();
         $tag->setId($id);
         $tag->setDateDalet(date("Y-m-d"));
-        $tag->daletTag();
+        $tag->daletAction();
      }
      public function updateTagController()
      {
         $tag=new Tag($this->name,$this->idAdmin,$this->id);
-        $tag->updateTag();
+        $tag->updateAction();
      }
     
 }
