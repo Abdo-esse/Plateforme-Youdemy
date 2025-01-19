@@ -39,7 +39,6 @@ if(isset($_GET["id"]))
             throw new Exception("Les données sont manquantes !");
         }
         
-        // echo "Code exécuté avec succès !<br />";
       } catch (Exception $ex) {
         echo "Erreur détectée : " . $ex->getMessage() . "<br />";
       }
@@ -59,10 +58,8 @@ if(isset($_GET["id"]))
     $duree= $_POST["duree"];
     $prix= $_POST["prix"];
     $tags= $_POST["tags"];
-    // print_r($tags);
     $urlContenu= $_POST["urlContenu"];
     $cours=new CoursConroller($titre, $photoCouverture,$description,$idCategorie,$idEnseignat,$nomberChapitre,$duree,$prix,$tags,$urlContenu,$idCours);
-    // print_r($cours);
     $cours->updateCours();
 
 

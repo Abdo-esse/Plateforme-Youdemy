@@ -15,7 +15,6 @@ $enseignant = new Enseignant($_SESSION["userName"], $_SESSION["useremail"], "", 
 $idEnseignant=$enseignant->getId();
 $cours = new CoursConroller();
   $_SESSION["cours"]=$cours->afficherCours();
-  // print_r($_SESSION["cours"])
   ?>
 
     <!DOCTYPE html>
@@ -175,6 +174,8 @@ $cours = new CoursConroller();
                 }
                 }
             ?>
+
+
   </section>
 </div>
 </div>
