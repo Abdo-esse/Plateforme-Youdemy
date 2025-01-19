@@ -40,7 +40,7 @@ class LoginC
                 header("Location:../../View/enseignant/dashbord.php");
                 break;
             case "Etudiant":
-                header("Location:../../View/etudiant/index.php");
+                header("Location:../../View/index.php");
                 break;
             default:
                 header("Location:../../View/auth/login.php");

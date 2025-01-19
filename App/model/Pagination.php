@@ -11,7 +11,7 @@ class Pagination  {
     private $table;
     private $nbrElementPerPage;
 
-    public function __construct(  $table,  $nbrElementPerPage = 4) {
+    public function __construct(  $table,  $nbrElementPerPage ) {
         $this->table = $table;
         $this->nbrElementPerPage = $nbrElementPerPage;
     }
@@ -19,7 +19,9 @@ class Pagination  {
     // Obtenir le nombre total d'éléments dans la table
     public function getTotalCount(){
         $conn = Connexion::connexion();
-        $query = $conn->prepare("SELECT COUNT(id) as total FROM {$this->table}");
+        $query = $conn->prepare("SELECT COUNT(id) as total 
+        FROM {$this->table}
+          where cours.isPublier= true and cours.dateDelete IS NULL ");
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return  $result['total'];
@@ -35,6 +37,7 @@ class Pagination  {
             join categories on categories.id=cours.idCategorie
             join cours_tags on cours_tags.idCours=cours.id
             join tags on tags.id=cours_tags.idTags
+            where cours.isPublier= true and cours.dateDelete IS NULL 
             GROUP by cours.id
             ORDER BY cours.id LIMIT :offset, :nbr_element");
         $query->bindValue(':nbr_element', $this->nbrElementPerPage, PDO::PARAM_INT);
