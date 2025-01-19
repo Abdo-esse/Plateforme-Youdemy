@@ -9,14 +9,6 @@ if ( $_SESSION["userrole"]!="Enseignant") {
    header("Location: ../auth/logIn.php"); 
    exit(); 
    }
-  //  if(isset($_GET["page"])){
-  //   $page=$_GET["page"];
-  //  } 
-  //  else{
-  //   $page=1;
-  //  }
-   $pagination=new PaginationController("cours");
-   print_r($pagination->getDataController(2));
    
    ?>
 

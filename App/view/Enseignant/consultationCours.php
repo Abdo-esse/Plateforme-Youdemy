@@ -88,48 +88,30 @@ if ( $_SESSION["userrole"]!="Enseignant") {
                   $tagsArray = explode(',', $cours->tags);
                  
                         ?>
-    <!-- Carte 1 -->
  <article class="bg-white rounded-xl shadow hover:shadow-md transition-shadow duration-300">
   <div class="relative">
     <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
 
     <!-- Catégorie -->
     <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
-      <?php echo $cours->categories?>
-    </span>
-    <!-- Badge nouveau -->
-    <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-      Nouveau
+    <?php echo $cours->categories?>
     </span>
   </div>
   
   <div class="p-4">
-    <div class="flex justify-between items-start mb-2">
-      <h3 class="text-lg font-semibold line-clamp-1"><?php echo $cours->titre?></h3>
-      <div class="flex gap-2">
-        
-        <a href="update.php?id=<?php echo $cours->id?>" class="text-yellow-500 hover:text-yellow-600 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-          </svg>
-        </a>
-        <a href="./delete.php?id=<?php echo $cours->id?>" class="text-red-500 hover:text-red-600 transition-colors" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce cours ?');">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-          </svg>
-        </a>
-      </div>
+    <div class="mb-2">
+      <h3 class="text-lg font-semibold line-clamp-1"><?php echo $cours->titre?></h3></h3>
     </div>
     
     <!-- Tags -->
     <div class="flex flex-wrap gap-1 mb-2">
-      <?php foreach($tagsArray as $tag){?>
+    <?php foreach($tagsArray as $tag){?>
         <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded"><?php echo $tag?></span>
       <?php }?>
     </div>
 
     <p class="text-gray-600 text-sm line-clamp-2 mb-3">
-      <?php echo $cours->description?>
+    <?php echo $cours->description?>
     </p>
     
     <div class="space-y-1.5 mb-4">
@@ -145,14 +127,19 @@ if ( $_SESSION["userrole"]!="Enseignant") {
         </svg>
         <span><?php echo $cours->nomberChapitre?> chapitres</span>
       </div>
+      <!-- Ajout du nombre d'étudiants -->
+      <div class="flex items-center text-gray-500 text-sm">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <span>125 étudiants</span>
+      </div>
     </div>
 
     <div class="flex justify-between items-center">
-      <span class="text-blue-600 font-bold"><?php echo $cours->prix?> €</span>
-      <a href="./publier.php?id=<?php echo $cours->id?>">
-      <button  class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-lg transition-colors">
-        Publier
-      </button>
+      <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
+      <a href="./details.php?id=<?php echo $cours->id ?>" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
+        Read More
       </a>
     </div>
   </div>
@@ -248,3 +235,5 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 
 </body>
 </html>
+
+
