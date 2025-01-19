@@ -14,15 +14,9 @@ class CoursConroller
 
     }
 
-   public function ajouterCours()
-   {
-     $this->coursModel->addAction();
-   }
+   public function ajouterCours(){$this->coursModel->addAction();}
 
-   public function afficherCours()
-   {
-     return  $this->coursModel->readAll();
-   }
+   public function afficherCours(){return  $this->coursModel->readAll();}
    public function publierCours($id,$isPublier)
    {
      $this->coursModel->setId($id);
@@ -35,16 +29,23 @@ class CoursConroller
      $this->coursModel->setDateDelete(date("Y-m-d"));
      $this->coursModel->daletAction();
    }
+
    public function readCour($id)
    {
      $this->coursModel->setId($id);
      return $this->coursModel->readOne();
    }
-   public function updateCours()
-   {
-     
-     $this->coursModel->updateAction();
-   }
-  
+
+   public function updateCours(){$this->coursModel->updateAction(); }
+
+    public function afficherCoursPublier($idEnseignant,$page){
+        $this->coursModel->setIdEnseignant($idEnseignant);
+        return $this->coursModel->consultationCoursPubier($page);
+    }
+
+    public function totalPages($idEnseignant){
+        $this->coursModel->setIdEnseignant($idEnseignant);
+        return $this->coursModel->getTotalPages();
+    }
 
 }

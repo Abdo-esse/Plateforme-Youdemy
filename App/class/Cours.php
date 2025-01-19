@@ -55,6 +55,7 @@ use PDO;
     public function getId(){return  $this->id;}
     public function gettags(){return  $this->idTags;}
     public function setId($id){  $this->id=$id;}
+    public function setIdEnseignant($idEnseignant){  $this->idEnseignant=$idEnseignant;}
     public function setPublier($isPublier){ $this->isPublier=$isPublier;}
     public function setDateDelete($dateDelete){ $this->dateDelete=$dateDelete;}
     
@@ -111,33 +112,67 @@ use PDO;
     public function updateCoursTags()
     {
         $conn = Connexion::connexion(); 
-        $conn->beginTransaction(); // Démarrer la transaction
+        $conn->beginTransaction(); 
 
 try {
-    // Suppression des tags existants
+    
     $sqlDelete = "DELETE FROM cours_tags WHERE idCours = ?";
     $stmt = $conn->prepare($sqlDelete);
     if (!$stmt->execute([$this->id])) {
-        throw new PDOException("Erreur lors de la suppression des tags."); // Lever une exception manuellement
+        throw new PDOException("Erreur lors de la suppression des tags."); 
     }
 
-    // Insertion des nouveaux tags
+  
     foreach($this->idTags as $idTag )
     {
     $sqlInsert = "INSERT INTO cours_tags (idCours, idTags) VALUES (?, ?)";
     $stmt = $conn->prepare($sqlInsert);
     if (!$stmt->execute([$this->id, $idTag])) {
-        throw new PDOException("Erreur lors de l'insertion des nouveaux tags."); // Lever une exception manuellement
+        throw new PDOException("Erreur lors de l'insertion des nouveaux tags."); 
     }
     }
-    $conn->commit(); // Valider la transaction
-    echo "Transaction réussie.";
+    $conn->commit(); 
 } catch (PDOException $e) {
-    $conn->rollBack(); // Annuler la transaction en cas d'erreur
+    $conn->rollBack(); 
     echo "Erreur : " . $e->getMessage();
 }
 
 
+    }
+    
+    public function consultationCoursPubier($page){
+        $conn = Connexion::connexion();
+        $debut = ($page - 1) * 4;
+        $query = $conn->prepare("SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
+            from cours
+            JOIN users on users.id=cours.idEnseignant
+            join categories on categories.id=cours.idCategorie
+            join cours_tags on cours_tags.idCours=cours.id
+            join tags on tags.id=cours_tags.idTags
+            WHERE cours.idEnseignant=:id and cours.isPublier= true and cours.dateDelete IS NULL
+            GROUP by cours.id
+            ORDER BY cours.id LIMIT :offset, :nbr_element");
+       $query->bindValue(':id', $this->idEnseignant, PDO::PARAM_INT);
+       $query->bindValue(':nbr_element', 4, PDO::PARAM_INT);
+       $query->bindValue(':offset', $debut, PDO::PARAM_INT);
+       
+       $query->execute();
+       return $query->fetchAll(PDO::FETCH_OBJ);
+
+    } 
+    public function getTotalCours(){
+        $conn = Connexion::connexion();
+        $query = $conn->prepare("SELECT COUNT(id) as total
+         FROM cours
+         where cours.idEnseignant=:id and cours.isPublier= true and cours.dateDelete IS NULL ");
+         $query->bindValue(':id', $this->idEnseignant, PDO::PARAM_INT);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return  $result['total'];
+    }
+    public function getTotalPages() {
+        $totalCount = $this->getTotalCours();
+        return  ceil($totalCount / 4);
     }
 
  }

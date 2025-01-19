@@ -11,16 +11,16 @@ class PaginationController
    
     
 
-    public function __construct( $table ,  $nbrElementPerPage = 6){
+    public function __construct( $table ,  $nbrElementPerPage = 4){
        
-        $this->paginationModel=new Pagination( $table,  $nbrElementPerPage = 6);
+        $this->paginationModel=new Pagination( $table,  $nbrElementPerPage = 4);
        
     }
     public function getDataController($page){
-        $this->paginationModel->getData($page);
+       return  $this->paginationModel->getData($page);
     }
-    public function totalPages($page){
-        $this->paginationModel->getTotalPages();
+    public function totalPages(){
+       return $this->paginationModel->getTotalPages();
     }
     
 
