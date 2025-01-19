@@ -112,10 +112,11 @@ if ( $_SESSION["userrole"]!="Etudiant") {
                             <div class="flex justify-between items-center">
                                 <span class="text-3xl font-bold text-gray-500 "><?php echo $course->prix; ?> €</span>
                             </div>
-                            
+                            <a href="./inscription.php?id=<?php echo $course->id; ?>">
                             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
                                 S'inscrire maintenant
                             </button>
+                            </a>
                             
                             <div class="space-y-3 pt-4">
                                 <div class="flex items-center">

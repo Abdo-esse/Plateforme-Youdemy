@@ -11,9 +11,9 @@ class EtudiantController
    
     
 
-    public function __construct( $nom, $email, $password,Role $role,$id=null){
+    public function __construct( $nom, $email, $password,Role $role,$id){
        
-        $this->etudiantModel=new Enseignant(  $nom, $email, $password,$role,$id=null);
+        $this->etudiantModel=new Etudiant(  $nom, $email, $password,$role,$id);
        
     }
 
