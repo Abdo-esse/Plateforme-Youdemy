@@ -62,4 +62,13 @@ CREATE Table cours_tags(
    idCours INT ,
    idTags INT
 );
-DROP Table courstags;
+CREATE Table inscription(
+     idEtudiant int ,
+      idCours int ,
+      dateInscrire DATETIME DEFAULT CURRENT_TIMESTAMP,
+      Foreign Key ( idEtudiant) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+        Foreign Key (idCours) REFERENCES cours(id) ON DELETE CASCADE ON UPDATE CASCADE,
+           PRIMARY KEY(idEtudiant,idCours)
+
+
+   );
