@@ -183,10 +183,11 @@ try {
             join categories on categories.id=cours.idCategorie
             join cours_tags on cours_tags.idCours=cours.id
             join tags on tags.id=cours_tags.idTags
-            where cours.isPublier= true and cours.dateDelete IS NULL and (cours.titre like :keyword or categories like :keyword or tags like :keyword )
+            where cours.isPublier= true and cours.dateDelete IS NULL and (cours.titre like :keyword or categories.name like :keyword  )
             GROUP by cours.id
             ORDER BY cours.id LIMIT 4");
         $query->execute(array(":keyword" => '%' . $keyword . '%'));
+
         $resulta= $query->fetchAll(PDO::FETCH_OBJ);
         return json_encode($resulta);
     }
