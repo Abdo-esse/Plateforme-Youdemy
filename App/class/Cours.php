@@ -175,6 +175,9 @@ try {
         return  ceil($totalCount / 4);
     }
 
+    
+
+
     public function search($keyword){
         $conn = Connexion::connexion();
         $query = $conn->prepare("SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
