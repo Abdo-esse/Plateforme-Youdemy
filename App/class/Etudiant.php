@@ -3,7 +3,7 @@ namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php'; 
 use App\model\Crud;
 use App\Config\Connexion;
-
+use PDO;
 
 
 class Etudiant extends User
@@ -50,11 +50,11 @@ class Etudiant extends User
              join cours_tags on cours_tags.idCours=cours.id
              join tags on tags.id=cours_tags.idTags
              join inscription on inscription.idCours=cours.id
-            join users AS etudiant on inscription.idEtudiant=etudiant.id
-          WHERE inscription.idEtudiant=:idetudiant
+             join users AS etudiant on inscription.idEtudiant=etudiant.id
+             WHERE inscription.idEtudiant=:idetudiant
              GROUP by cours.id";
-             $stmt = $conn->prepare($sql);
-             $stmt->execute(array(":idetudiant" => $this->id));
-             return $stmt->fetchAll(PDO::FETCH_OBJ);
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array(":idetudiant" => $this->id));
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }    
 }

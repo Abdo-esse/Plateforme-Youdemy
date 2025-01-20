@@ -21,6 +21,10 @@ class EtudiantController
         $this->etudiantModel->inscriptionACours($idCours);
 
     }
+    public function getCoursInscrireController(){
+        return $this->etudiantModel->getCoursInscrire();
+
+    }
    
    
 
