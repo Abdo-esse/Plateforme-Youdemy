@@ -161,7 +161,7 @@ $data=$cours->getDataController($currentPage);
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
               href="#">About</a>
               <?php
-              if ( $_SESSION["userrole"]=="Etudiant") {?>
+              if (isset($_SESSION["userrole"])&&$_SESSION["userrole"]=="Etudiant") {?>
               <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
               href="#">Mes cours</a>
@@ -277,7 +277,7 @@ $data=$cours->getDataController($currentPage);
 
     <div class="flex justify-between items-center">
       <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a <?php if ( $_SESSION["userrole"]=="Etudiant") {?> href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"<?php } else {?> href="./auth/signUp.php"<?php }?>
+      <a href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"
         class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
         Read More
       </a>
