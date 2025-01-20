@@ -210,6 +210,8 @@ $data=$cours->getDataController($currentPage);
             <h2 class="text-4xl font-extrabold text-gray-800">Catalogue</h2>
             <div class="relative">
                 <input type="text" 
+                       id="keyword"
+                       oninput="searchKeyword()"
                        placeholder="Rechercher..." 
                        class="w-64 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
@@ -275,7 +277,7 @@ $data=$cours->getDataController($currentPage);
 
     <div class="flex justify-between items-center">
       <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a <?php if ( $_SESSION["userrole"]=="Etudiant") {?> href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"<?php } else {?> href="./auth/logIn.php"<?php }?>
+      <a <?php if ( $_SESSION["userrole"]=="Etudiant") {?> href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"<?php } else {?> href="./auth/signUp.php"<?php }?>
         class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
         Read More
       </a>
@@ -585,6 +587,7 @@ $data=$cours->getDataController($currentPage);
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer></script>
+      <script src="./js/search.js"></script>
       
 
 

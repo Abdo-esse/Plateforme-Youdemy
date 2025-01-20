@@ -7,10 +7,6 @@ let parentWorkExperience = document.querySelector(".parent-input");
 //button de add work experience
 let addWorkExperienceBtn = document.querySelector("#add-work-experience");
 
-
-
-
-
 // La function de  add Work Experience
 function addWorkExperience() {
   let newForme = parentWorkExperience.cloneNode(true);
