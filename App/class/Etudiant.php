@@ -41,6 +41,20 @@ class Etudiant extends User
       }
         
     }
-
-    
+    public function getCoursInscrire(){
+        $conn = Connexion::connexion();
+        $sql="SELECT cours.id,cours.titre,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,categories.name as categories,GROUP_CONCAT(tags.name)as tags, enseignants.name AS enseignant_name
+             from cours
+             JOIN users AS enseignants on enseignants.id=cours.idEnseignant
+             join categories on categories.id=cours.idCategorie
+             join cours_tags on cours_tags.idCours=cours.id
+             join tags on tags.id=cours_tags.idTags
+             join inscription on inscription.idCours=cours.id
+            join users AS etudiant on inscription.idEtudiant=etudiant.id
+          WHERE inscription.idEtudiant=:idetudiant
+             GROUP by cours.id";
+             $stmt = $conn->prepare($sql);
+             $stmt->execute(array(":idetudiant" => $this->id));
+             return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }    
 }
