@@ -64,20 +64,15 @@ if ( $_SESSION["userrole"]!="Etudiant") {
 <body class="bg-gray-100 min-h-screen">
     <main class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- En-tête du cours -->
+           
             <div class="mb-6">
                 <h1 class="text-3xl font-bold text-gray-800 mb-2"><?php echo $course->titre ?></h1>
             </div>
-
-            <!-- Conteneur vidéo principal -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <!-- Zone de la vidéo -->
+                
                 <div class="aspect-w-16 aspect-h-9 bg-black">
-                    <!-- Remplacez src par votre source vidéo -->
                     <iframe class="w-full h-full object-cover" src="<?php echo $course->photoCouverture ?>"  frameborder="0"  ></iframe>
                 </div>
-
-                <!-- Informations sous la vidéo -->
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center">
@@ -86,14 +81,19 @@ if ( $_SESSION["userrole"]!="Etudiant") {
                             <span class="text-sm text-gray-500">Durée: <?php echo $course->duree ?> h</span>
                         </div>
                     </div>
-
-                    <!-- Description détaillée -->
                     <div class="prose max-w-none">
                         <h2 class="text-xl font-semibold text-gray-800 mb-3">À propos de cette leçon</h2>
                         <p class="text-gray-600">
                         <?php echo $course->description ?>
                         </p>
                     </div>
+                    <div class="flex space-x-2">
+                        <a href="./mesCours.php">
+                            <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                Routoure
+                            </button>
+                            </a>
+                        </div>
 
                    
                 </div>

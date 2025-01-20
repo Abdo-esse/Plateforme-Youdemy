@@ -60,11 +60,9 @@ if ( $_SESSION["userrole"]!="Etudiant") {
   </head>
 
 <body class="bg-gray-50">
-    <!-- Hero Section with Course Cover -->
     <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div class="container mx-auto px-4 py-12">
             <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Course Info -->
                 <div class="lg:w-2/3">
                     <div class="space-y-4">
                         <span class="inline-block px-3 py-1 bg-blue-500 rounded-full text-sm font-semibold">
@@ -97,8 +95,6 @@ if ( $_SESSION["userrole"]!="Etudiant") {
                         </div>
                     </div>
                 </div>
-                
-                <!-- Course Card -->
                 <div class="lg:w-1/3">
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <div class="relative pb-2">

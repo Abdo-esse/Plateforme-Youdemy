@@ -152,7 +152,7 @@ if ( $_SESSION["userrole"]!="Etudiant") {
           <div class="flex flex-col md:flex-row md:mx-6">
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="index.html">Home</a>
+              href="../index.html">Home</a>
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
               href="#">About</a>
@@ -164,15 +164,15 @@ if ( $_SESSION["userrole"]!="Etudiant") {
           </div>
 
       <div>
-      <a href="./auth/logIn.php">
+      <a href="../auth/logIn.php">
       <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log OUT</button>
         </a>
      <?php } else{?>
 
-        <a href="./auth/logIn.php">
+        <a href="../auth/logIn.php">
       <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log In</button>
         </a>
-        <a href="./auth/signUp.php">
+        <a href="../auth/signUp.php">
         <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
 
         </a>
