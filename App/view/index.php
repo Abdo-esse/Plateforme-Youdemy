@@ -221,13 +221,13 @@ $data=$cours->getDataController($currentPage);
             </div>
         </div>
         <hr>
-        <div id="prod-contanaire" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6">
+        <div id="coursContanaire" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6">
         <?php
              foreach ($data as $cours) {
                   $tagsArray = explode(',', $cours->tags);
                  
                         ?>
- <article class="bg-white mt-4 rounded-xl shadow hover:shadow-md transition-shadow duration-300">
+ <article id="coursCatalogue" class="bg-white mt-4 rounded-xl shadow hover:shadow-md transition-shadow duration-300">
   <div class="relative">
     <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
 
@@ -366,8 +366,8 @@ $data=$cours->getDataController($currentPage);
         Suivant
       </a>
     </li>
-  </ul>
-</nav>
+   </ul>
+   </nav>
       </div>
     </div>
     </body>
