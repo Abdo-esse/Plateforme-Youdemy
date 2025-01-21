@@ -138,7 +138,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
 
     <div class="flex justify-between items-center">
       <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a href="./details.php?id=<?php echo $cours->id ?>" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
+      <a href="./cour/detaille.php?id=<?php echo $cours->id ?>" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
         Read More
       </a>
     </div>

@@ -12,7 +12,6 @@ if ( $_SESSION["userrole"]!="Etudiant") {
    }
    $roleEtudiant= new Role(3);
    $etudiant= new EtudiantController( $_SESSION["userName"],$_SESSION["useremail"],"",$roleEtudiant, $_SESSION["userid"]);
-   print_r($etudiant->getCoursInscrireController());
    $data=$etudiant->getCoursInscrireController();
 
 ?>
@@ -152,7 +151,7 @@ if ( $_SESSION["userrole"]!="Etudiant") {
           <div class="flex flex-col md:flex-row md:mx-6">
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="../index.html">Home</a>
+              href="../index.php">Home</a>
             <a
               class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
               href="#">About</a>

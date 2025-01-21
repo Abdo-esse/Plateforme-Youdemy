@@ -13,7 +13,7 @@ if ( $_SESSION["userrole"]!="Etudiant") {
     $id=$_GET['id'];
     $cours= new CoursConroller();
     $course=$cours->readCour($id);
-    print_r( $course);
+    // print_r( $course);
 
   }
 
@@ -71,7 +71,12 @@ if ( $_SESSION["userrole"]!="Etudiant") {
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 
                 <div class="aspect-w-16 aspect-h-9 bg-black">
-                    <iframe class="w-full h-full object-cover" src="<?php echo $course->photoCouverture ?>"  frameborder="0"  ></iframe>
+                <iframe 
+    class="w-full h-full object-cover" 
+    src="<?php echo $course->contenu; ?>" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
                 </div>
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
