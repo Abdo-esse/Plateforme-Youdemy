@@ -37,7 +37,16 @@ class AdminC
     {
         $this->adminM->gestionUtilisateurs($id,$compteStatut);
     }
-   
+    
+    public function courPlusEtudiantsConreller(){
+      return  $this->adminM->courPlusEtudiants();
+    }
+    public function totalCourConreller(){
+        return $this->adminM->totalCour();
+    }
+    public function topEnseignantsConreller(){
+        return $this->adminM->topEnseignants();
+    }
 
     
 }

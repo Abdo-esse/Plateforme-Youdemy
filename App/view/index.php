@@ -168,7 +168,7 @@ $data=$cours->getDataController($currentPage);
           </div>
 
       <div>
-      <a href="./auth/logIn.php">
+      <a href="http://localhost/Plateforme-Youdemy/App/view/auth/logout.php">
       <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log OUT</button>
         </a>
      <?php } else{?>
@@ -266,7 +266,7 @@ $data=$cours->getDataController($currentPage);
         </svg>
         <span><?php echo $cours->nomberChapitre?> chapitres</span>
       </div>
-      <!-- Ajout du nombre d'étudiants -->
+     
       <div class="flex items-center text-gray-500 text-sm">
         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>

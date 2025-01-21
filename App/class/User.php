@@ -41,6 +41,7 @@ abstract class User
     public function getPassword() { return $this->password; }
     public function getCompteStatut() { return $this->compteStatut;}
     public function getData() { return  $this->data; }
+    public function setId($id) { $this->id=$id; }
 
     abstract public function inscription ();
     

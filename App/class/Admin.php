@@ -38,4 +38,39 @@ class Admin extends User
         Crud::updateAction('users', $id,["compteStatut"=>"$compteStatut"]);
         
     }
+
+    public function  courPlusEtudiants(){
+        $conn = Connexion::connexion(); 
+        $sql='SELECT cours.titre,cours.id ,cours.description,cours.photoCouverture, COUNT(inscription.idEtudiant) AS max_nombre_etudiants
+              FROM cours
+              JOIN inscription ON inscription.idCours = cours.id
+              GROUP BY cours.id, cours.titre
+              ORDER BY max_nombre_etudiants DESC
+              LIMIT 1;';
+       $stmt=$conn->prepare($sql);
+       $stmt->execute();
+       return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    public function  totalCour(){
+        $conn = Connexion::connexion(); 
+        $sql='SELECT COUNT(cours.id) as total_cours
+        from cours
+        where cours.isPublier= true and cours.dateDelete is null;';
+       $stmt=$conn->prepare($sql);
+       $stmt->execute();
+       return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    public function  topEnseignants(){
+        $conn = Connexion::connexion(); 
+        $sql='SELECT users.name, COUNT(cours.id) AS nombre_cours
+              FROM users
+              JOIN cours ON cours.idEnseignant = users.id
+              JOIN inscription ON inscription.idCours = cours.id
+              GROUP BY users.id, users.name
+              ORDER BY nombre_cours DESC
+              LIMIT 3;';
+       $stmt=$conn->prepare($sql);
+       $stmt->execute();
+       return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

@@ -16,7 +16,12 @@ class EnseignantController
         $this->enseignantModel=new Enseignant(  $nom, $email, $password,$role,$id=null);
        
     }
-   
+    public function totalCours($boolean,$id){
+        return $this->enseignantModel->totalCoursIspublier($boolean,$id);
+    }
+    public function totalEtudiant($id){
+        return $this->enseignantModel->totalEtudiantInscrits($id);
+    }
    
 
     
