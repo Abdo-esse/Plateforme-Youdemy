@@ -38,4 +38,18 @@ class Admin extends User
         Crud::updateAction('users', $id,["compteStatut"=>"$compteStatut"]);
         
     }
+
+    public function  courPlusEtudiants(){
+        $conn = Connexion::connexion(); 
+        $sql='SELECT MAX(nombre_etudiants) AS max_nombre_etudiants
+              FROM (
+              SELECT COUNT(inscription.idEtudiant) AS nombre_etudiants
+              FROM cours
+              JOIN inscription ON inscription.idCours = cours.id
+              GROUP BY cours.id, cours.titre
+              ) AS SubRequete;';
+       $stmt=$conn->prepare($sql);
+       $stmt->execute();
+       return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }
