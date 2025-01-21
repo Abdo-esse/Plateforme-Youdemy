@@ -78,7 +78,6 @@ if ( $_SESSION["userrole"]!="Administrateur") {
                 </svg>
             </div>
             <p class="text-3xl font-bold text-gray-900 mt-2"><?php echo $totaleCours->total_cours?></p>
-            <p class="text-sm text-gray-500 mt-1">+12 nouveaux cours ce mois</p>
         </div>
     </div>
 

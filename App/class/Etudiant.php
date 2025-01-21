@@ -41,9 +41,9 @@ $stmt->execute([
                 ];
                 Crud::createAction('inscription',$data);
             }else{
-                // $_SESSION['errorInscription']="vous ete deja inscrit";
-                echo'jajaja';
-                exit();
+               return $_SESSION['errorInscription']="vous ete deja inscrit";
+              
+                
           }
         
 
