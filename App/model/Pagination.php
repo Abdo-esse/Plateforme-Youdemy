@@ -31,7 +31,9 @@ class Pagination  {
     public function getData( $page) {
         $conn = Connexion::connexion();
         $debut = ($page - 1) * $this->nbrElementPerPage;
-        $query = $conn->prepare("SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags
+        $query = $conn->prepare("SELECT cours.id,cours.titre,cours.idEnseignant,cours.isPublier,cours.photoCouverture,cours.contenu,cours.description,cours.nomberChapitre,cours.duree,cours.prix,cours.dateCreation,cours.dateDelete,categories.name as categories ,users.name,GROUP_CONCAT(tags.name)as tags,(SELECT COUNT(inscription.idEtudiant) 
+     FROM inscription 
+     WHERE inscription.idCours = cours.id) AS Etudiant
             from cours
             JOIN users on users.id=cours.idEnseignant
             join categories on categories.id=cours.idCategorie
