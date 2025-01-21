@@ -2,7 +2,8 @@
 namespace App\class;
 require __DIR__ . '/../../vendor/autoload.php'; 
 use App\model\Crud;
-
+use App\Config\Connexion;
+use PDO;
 
 class Enseignant extends User
 {
@@ -24,25 +25,25 @@ class Enseignant extends User
         Crud::createAction('gestionEnseignants',["idEnseignant"=> $idEnseignant]) ;
  }
 
- public function totalEtudiantInscrits(){
+ public function totalEtudiantInscrits($id){
   $conn = Connexion::connexion(); 
-  $sql="SELECT  count(inscription.idEtudiant)
+  $sql="SELECT  count(inscription.idEtudiant) as etudiants
         from inscription
         JOIN cours ON cours.id=inscription.idCours
         join users on users.id=cours.idEnseignant
         WHERE users.id=? ";
         $stmt=$conn->prepare($sql);
-        $stmt->execute($this->id);
+        $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
 
  }
- public function totalCoursIspulier(){
+ public function totalCoursIspublier($boolean,$id){
   $conn = Connexion::connexion(); 
   $sql="SELECT COUNT(id) AS nombre_cours
         FROM cours
-        WHERE isPublier = ? AND idEnseignant = 16; ";
+        WHERE isPublier = ? AND idEnseignant =?; ";
         $stmt=$conn->prepare($sql);
-        $stmt->execute($boolean,$this->id);
+        $stmt->execute([$boolean,$id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
 
  }
