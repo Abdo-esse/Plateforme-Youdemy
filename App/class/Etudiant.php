@@ -16,12 +16,15 @@ class Etudiant extends User
 
  public function verifyEtudiatCourseEnrollment($idCours){
     $conn = Connexion::connexion();
-    $sql="SELECT users.name FROM users
-         join inscription on inscription.idEtudiant=users.id
-         join cours on cours.id=inscription.idCours
-         WHERE cours.id= :idCours";
-          $stmt = $conn->prepare($sql);
-         $stmt->execute(array(":idCours" => $idCours));
+$sql = "SELECT *
+        FROM inscription
+        WHERE idEtudiant = :idEtudiant AND idCours = :idCours;";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute([
+    ":idEtudiant" => $this->id, // Ajout du paramètre idEtudiant
+    ":idCours" => $idCours
+]);
          $resultCheck;
          if($stmt->rowCount() > 0){ $resultCheck=false; }
          else { $resultCheck=true; }
@@ -30,15 +33,23 @@ class Etudiant extends User
 
 
     public function inscriptionACours($idCours){
-      if ($this->verifyEtudiatCourseEnrollment($idCours)){
-        $data=[
-            "idEtudiant" => $this->id,
-            "idCours" => $idCours
-        ];
-        Crud::createAction('inscription',$data);
-      }else{
-            $_SESSION['errorInscription']="vous ete deja inscrit";
-      }
+      
+            if ($this->verifyEtudiatCourseEnrollment($idCours)){
+                $data=[
+                    "idEtudiant" => $this->id,
+                    "idCours" => $idCours
+                ];
+                Crud::createAction('inscription',$data);
+            }else{
+                // $_SESSION['errorInscription']="vous ete deja inscrit";
+                echo'jajaja';
+                exit();
+          }
+        
+
+     
+
+      
         
     }
     public function getCoursInscrire(){
