@@ -9,6 +9,13 @@ use PDO;
 class Admin extends User
 {
     
+
+
+
+    public function inscription (){
+       //vide 
+ }
+
     public function afficherComptesEnseignantsEnCours()
     {
        $conn = Connexion::connexion(); 

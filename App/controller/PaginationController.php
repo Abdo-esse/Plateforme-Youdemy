@@ -11,9 +11,9 @@ class PaginationController
    
     
 
-    public function __construct( $table ,  $nbrElementPerPage = 4){
+    public function __construct( $table ,  $nbrElementPerPage){
        
-        $this->paginationModel=new Pagination( $table,  $nbrElementPerPage = 4);
+        $this->paginationModel=new Pagination( $table,  $nbrElementPerPage);
        
     }
     public function getDataController($page){

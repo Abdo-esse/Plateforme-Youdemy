@@ -6,6 +6,8 @@ use App\Config\Connexion;
 use App\Class\Role; 
 use App\Class\User; 
 use App\Class\Enseignant; 
+use App\Class\Admin; 
+use App\Class\Etudiant; 
 use PDO;
 
 class LoginM
@@ -62,9 +64,12 @@ class LoginM
             header("location: ../../../../Plateforme-Youdemy/App/view/auth/logIn.php");
             exit();
         }
+        }else if($user["role"]=="Etudiant"){
+            return new Etudiant($user["name"], $user["email"], $user["password"], $role, $user["id"]);
+        }else if($user["role"]=="Administrateur"){
+            return new Admin($user["name"], $user["email"], $user["password"], $role, $user["id"]);
         }
 
-        return new User($user["name"], $user["email"], $user["password"], $role, $user["id"]);
        
         
 

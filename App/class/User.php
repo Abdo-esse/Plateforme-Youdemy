@@ -6,7 +6,7 @@ use App\Class\Role;
 use App\model\Crud;
 use App\Config\Connexion;
 
-class User
+abstract class User
 {
     protected $id;
     protected $nom ;
@@ -42,9 +42,8 @@ class User
     public function getCompteStatut() { return $this->compteStatut;}
     public function getData() { return  $this->data; }
 
-    public function inscription (){
-        Crud::createAction('users', $this->data);
- }
+    abstract public function inscription ();
+    
     public function gteUser($idUser)
     {
         return Crud::readAction('users',["id"=>$idUser]);

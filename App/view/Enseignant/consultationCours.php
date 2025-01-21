@@ -132,13 +132,13 @@ if ( $_SESSION["userrole"]!="Enseignant") {
         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
         </svg>
-        <span>125 étudiants</span>
+        <span><?php echo $cours->Etudiant?> étudiants</span>
       </div>
     </div>
 
     <div class="flex justify-between items-center">
       <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a href="./details.php?id=<?php echo $cours->id ?>" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
+      <a href="./cour/detaille.php?id=<?php echo $cours->id ?>" class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
         Read More
       </a>
     </div>

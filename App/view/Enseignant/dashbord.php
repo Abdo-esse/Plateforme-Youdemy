@@ -1,8 +1,6 @@
 <?php
 session_start();
 require __DIR__ . '/../../../vendor/autoload.php';
-
-use App\controller\PaginationController;
 if ( $_SESSION["userrole"]!="Enseignant") {
   
    session_destroy();

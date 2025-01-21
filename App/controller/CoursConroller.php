@@ -48,4 +48,9 @@ class CoursConroller
         return $this->coursModel->getTotalPages();
     }
 
+    public function searchCoursController($keyword){
+        return $this->coursModel->search($keyword);
+
+    }
+
 }
