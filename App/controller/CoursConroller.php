@@ -16,7 +16,12 @@ class CoursConroller
 
    public function ajouterCours(){$this->coursModel->addAction();}
 
-   public function afficherCours(){return  $this->coursModel->readAll();}
+   public function afficherCours($idEnseignant){
+    $this->coursModel->setIdEnseignant($idEnseignant);
+    return  $this->coursModel->readAll();
+  }
+
+
    public function publierCours($id,$isPublier)
    {
      $this->coursModel->setId($id);

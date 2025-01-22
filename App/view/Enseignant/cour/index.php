@@ -14,7 +14,7 @@ $roleEnseignant = new Role(2);
 $enseignant = new Enseignant($_SESSION["userName"], $_SESSION["useremail"], "", $roleEnseignant, "", $_SESSION["userid"]);
 $idEnseignant=$enseignant->getId();
 $cours = new CoursConroller();
-  $_SESSION["cours"]=$cours->afficherCours();
+  $_SESSION["cours"]=$cours->afficherCours($idEnseignant);
   ?>
 
     <!DOCTYPE html>

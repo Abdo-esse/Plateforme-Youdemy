@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="h-screen flex items-center justify-center">
     <form class="max-w-md w-full bg-white p-8 rounded-lg shadow-lg" method="post" >
-        <h2 class="text-2xl font-bold text-center mb-4">Formulaire</h2>
+        <h2 class="text-2xl font-bold text-center mb-4">Log in</h2>
         <?php
     if (isset($_SESSION['errorGenerale'])) {
         echo '<div class="text-red-600 error-message">' . $_SESSION["errorGenerale"] . '</div>';

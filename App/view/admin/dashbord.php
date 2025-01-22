@@ -109,17 +109,17 @@ if ( $_SESSION["userrole"]!="Administrateur") {
         <div class="bg-white rounded-lg shadow-md p-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Top 3 Enseignants</h3>
             <div class="space-y-4">
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                
                   
                 <?php for ($i=0; $i <count($topEnseignants); $i++) { 
                         ?>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                     <div class="flex items-center space-x-3">
                         <div class="bg-blue-100 text-blue-600 font-bold rounded-full w-8 h-8 flex items-center justify-center">
                         <?php echo $i+1 ?>
                         </div>
                         <div>
                             <p class="font-semibold text-gray-900"><?php echo $topEnseignants[$i]->name ?></p>
-                            <p class="text-sm text-gray-500"><?php echo $topEnseignants[$i]->nombre_cours?> cours </p>
                         </div>
                     </div>
                 </div>

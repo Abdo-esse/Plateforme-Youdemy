@@ -60,8 +60,11 @@ CREATE Table cours (
 CREATE Table cours_tags(
    id INT PRIMARY KEY AUTO_INCREMENT,
    idCours INT ,
-   idTags INT
+   idTags INT,
+   Foreign Key (idCours) REFERENCES cours(id),
+   Foreign Key (idTags) REFERENCES tags(id)
 );
+drop table cours_tags;
 CREATE Table inscription(
      idEtudiant int ,
       idCours int ,
