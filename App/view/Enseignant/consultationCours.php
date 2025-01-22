@@ -92,7 +92,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
   <div class="relative">
     <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
 
-    <!-- Catégorie -->
+   
     <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
     <?php echo $cours->categories?>
     </span>
@@ -103,7 +103,7 @@ if ( $_SESSION["userrole"]!="Enseignant") {
       <h3 class="text-lg font-semibold line-clamp-1"><?php echo $cours->titre?></h3></h3>
     </div>
     
-    <!-- Tags -->
+    
     <div class="flex flex-wrap gap-1 mb-2">
     <?php foreach($tagsArray as $tag){?>
         <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded"><?php echo $tag?></span>
@@ -127,7 +127,6 @@ if ( $_SESSION["userrole"]!="Enseignant") {
         </svg>
         <span><?php echo $cours->nomberChapitre?> chapitres</span>
       </div>
-      <!-- Ajout du nombre d'étudiants -->
       <div class="flex items-center text-gray-500 text-sm">
         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>

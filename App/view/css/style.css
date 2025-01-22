@@ -3,7 +3,7 @@ body {
   }
   
   #hero-section{
-    background-image: url('../images/banner/banner1.jpg');
+    background-image: url('../images/banner/banner2.jpg');
     transition: background-image 0.4s ease;
   }
   

@@ -321,7 +321,7 @@ $data=$cours->getDataController($currentPage);
         <?php
       }
     } else {
-      // Logic for showing ellipsis
+      
       $pageNumbers = [];
       if ($currentPage <= 4) {
         $pageNumbers = array_merge(range(1, 5), ['...', $totalPages]);
