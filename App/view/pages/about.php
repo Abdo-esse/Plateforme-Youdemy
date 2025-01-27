@@ -1,28 +1,6 @@
-<?php
-session_start();
-require __DIR__ . '/../../vendor/autoload.php';  
-use App\controller\PaginationController;
-$cours=new PaginationController('cours',8);
-$totalPages=$cours->totalPages();
-if(isset($_GET["page"])){
-  if (!is_numeric($_GET["page"]) || $_GET["page"] < 1 ||$_GET["page"]> $totalPages) {
-      $currentPage=1;
-  }else{
-    $currentPage=$_GET["page"];
-  }
-   
- } 
- else{
-  $currentPage=1;
- }
-$data=$cours->getDataController($currentPage);
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,9 +38,9 @@ $data=$cours->getDataController($currentPage);
     <link rel="shortcut icon" href="assets/images/logo/faveicon.webp" type="image/x-icon">
     <title> Youdemy | Home Page</title>
   </head>
-  <body>
-
-   <nav x-data="{ isOpen: false }" 
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav x-data="{ isOpen: false }" 
          class="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
         <div class="container mx-auto px-6 py-4 md:flex md:justify-between md:items-center">
             <div class="flex items-center justify-between">
@@ -97,7 +75,7 @@ $data=$cours->getDataController($currentPage);
                         from-indigo-600 to-purple-600 
                         md:bg-none z-50">
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 p-4 md:p-0">
-                    <a href="#" 
+                    <a href="../index.php" 
                        class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
                         Courses
                     </a>
@@ -112,11 +90,11 @@ $data=$cours->getDataController($currentPage);
                 </div>
 
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 p-4 md:p-0">
-                    <a href="./auth/logIn.php" 
+                    <a href="../auth/logIn.php" 
                        class="text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors">
                         Log In
                     </a>
-                    <a href="./auth/signUp.php" 
+                    <a href="../auth/signUp.php" 
                        class="text-indigo-600 bg-white hover:bg-gray-100 px-4 py-2 rounded-full transition-colors font-semibold">
                         Start Learning
                     </a>
@@ -125,294 +103,212 @@ $data=$cours->getDataController($currentPage);
         </div>
     </nav>
 
-    <!-- Hero Section with Carousel -->
-<section id="hero-section" class="h-[80vh] bg-gray-100 bg-cover bg-center relative">
-  <!-- Swiper Carousel -->
-  <div class="swiper-container h-full w-full">
-    <div class="swiper-wrapper">
-      <!-- Slide 1 -->
-      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800');">
-        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
-          <div class="text-center text-white px-6">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Welcome to Youdemy: Your One-Stop Online Course Platform!</h1>
-            <p class="text-lg mb-6">
-              Explorez notre gamme complète de cours éducatifs interactifs, conçus pour enrichir vos connaissances et développer vos compétences tout en favorisant un apprentissage durable et accessible à tous.
-            </p>
-            <a href="./auth/signUp.php" class="bg-blue-500 text-white py-3 px-5 rounded-lg hover:bg-blue-600 transition duration-300">
-              Get Started
-            </a>
-          </div>
+    <!-- Hero Section -->
+    <div class="h-[80vh] bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg text-white py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">Notre Histoire</h2>
+            <p class="text-xl max-w-2xl mx-auto">Transformons ensemble l'éducation en ligne pour créer un avenir meilleur</p>
         </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/8b/98/30/8b983021b3d64392da92ba5a18e3226c.jpg');">
-        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
-          <div class="text-center text-white px-6">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Learn Anytime, Anywhere</h1>
-            <p class="text-lg mb-6">
-              Access our courses from any device and learn at your own pace. Start your journey today!
-            </p>
-            <a href="./auth/signUp.php" class="bg-purple-500 text-white py-3 px-5 rounded-lg hover:bg-purple-600 transition duration-300">
-              Explore Courses
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/55/7c/64/557c64034ecc52a10522dd77a80c8700.jpg');">
-        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
-          <div class="text-center text-white px-6">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Join Thousands of Happy Learners</h1>
-            <p class="text-lg mb-6">
-              Be part of a growing community of learners who are transforming their lives through education.
-            </p>
-            <a href="./auth/signUp.php" class="bg-green-500 text-white py-3 px-5 rounded-lg hover:bg-green-600 transition duration-300">
-              Join Now
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
+    <!-- Main Content -->
+    <div class="container mx-auto py-16 px-4">
+        <!-- Mission Section -->
+        <div class="mb-16">
+            <h3 class="text-3xl font-bold text-gray-800 mb-6">Notre Mission</h3>
+            <p class="text-gray-600 leading-relaxed mb-8">
+                YOUdumy est née de la conviction que l'éducation de qualité devrait être accessible à tous. Notre plateforme connecte des experts passionnés avec des apprenants motivés du monde entier.
+            </p>
+        </div>
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<!-- Initialize Swiper -->
-<script>
-  const swiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    loop: true,
-    autoplay: {
-      delay: 5000, // Auto-slide every 5 seconds
-    },
-
-    // Pagination
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-</script>
-
-
-
-    <!-- Catalogue -->
-    <aside class="heading">
-          
-          <!-----------------------------------  section de filtration du product --------------------------------- -->
-                    <!------------------------------  bar de cherche  du product ----------------------- -->
-          
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Products</h2>
-          <div class="filters flex f justify-end mb-2">
-            
-            <div class='flex items-center justify-center flex-row-reverse'>
-              <form action="" class="relative mx-auto flex    ">
-                  <input type="search" id="keyword" oninput="searchKeyword()" class="text-xs border-none peer cursor-pointer relative z-10 h-[36px] w-10 rounded-lg border bg-transparent  pr-6 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"  placeholder="Typing..."/>
-                  <button class="gap-x-1.5  rounded-md bg-white h-[36px] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300  hover:bg-gray-50 absolute top-0 right-0 bottom-0   w-10 px-3  bg-slate-300 rounded-lg peer-focus:relative peer-focus:rounded-l-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50" >
-                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
-                      </svg>
-                  </button>
-              </form>
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-blue-600 mb-2">1M+</div>
+                <div class="text-gray-600">Étudiants Actifs</div>
             </div>
-                    <!-----------------------------------  filter par categorie--------------------------------- -->
-            <div class="relative inline-block text-left mx-1">
-                        <!----------------------------  button de filtre par caregore --------------------------------- -->
-                        <div class="max-w-sm mx-auto">
-                          <!-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label> -->
-                          <select id="catégorie"  class="w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50">
-                            <option selected value="All" >All</option>
-                            <option value="Électroniques" >elctronique</option>
-                            <option value="Maison">Maison</option>
-                            <option value="Mode">Mode</option>
-                            
-                          </select>
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-blue-600 mb-2">10K+</div>
+                <div class="text-gray-600">Cours Disponibles</div>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-blue-600 mb-2">50+</div>
+                <div class="text-gray-600">Pays Représentés</div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="mb-16">
+            <h3 class="text-3xl font-bold text-gray-800 mb-6">Notre Équipe</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="../images/WhatsApp Image 2025-01-02 at 22.14.47.jpeg" alt="CEO" class="rounded-full mx-auto mb-4">
+                    <h4 class="text-xl font-bold text-gray-800 text-center">Abdel Ilah ESSEMLALI</h4>
+                    <p class="text-gray-600 text-center">CEO & Fondatrice</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="../images/WhatsApp Image 2025-01-02 at 22.14.47.jpeg" alt="CTO" class="rounded-full mx-auto mb-4">
+                    <h4 class="text-xl font-bold text-gray-800 text-center">Abdel Ilah ESSEMLALI</h4>
+                    <p class="text-gray-600 text-center">Directeur Technique</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="../images/WhatsApp Image 2025-01-02 at 22.14.47.jpeg" alt="COO" class="rounded-full mx-auto mb-4">
+                    <h4 class="text-xl font-bold text-gray-800 text-center">Abdel Ilah ESSEMLALI</h4>
+                    <p class="text-gray-600 text-center">Directrice des Opérations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="bg-gray-50">
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- En-tête de la section -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Contactez-nous</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Une question ? Un projet ? Parlons-en ensemble. Notre équipe est là pour vous accompagner.
+                </p>
+            </div>
+
+            <!-- Grille principale -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Informations de contact -->
+                <div class="space-y-8 bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-gray-900">Nos coordonnées</h3>
+                        
+                        <!-- Cartes d'information -->
+                        <div class="space-y-4">
+                            <!-- Email -->
+                            <div class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                                <div class="bg-blue-600 p-3 rounded-full">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Email</h4>
+                                    <p class="text-gray-600">contact@youdumy.com</p>
+                                </div>
+                            </div>
+
+                            <!-- Téléphone -->
+                            <div class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                                <div class="bg-blue-600 p-3 rounded-full">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Téléphone</h4>
+                                    <p class="text-gray-600">+33 1 23 45 67 89</p>
+                                </div>
+                            </div>
+
+                            <!-- Localisation -->
+                            <div class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                                <div class="bg-blue-600 p-3 rounded-full">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Adresse</h4>
+                                    <p class="text-gray-600">123 Avenue de l'Innovation, Paris</p>
+                                </div>
+                            </div>
                         </div>
-            </div>
-                   <!-----------------------------------  filter par acheter--------------------------------- -->
-            <div class="relative inline-block text-left mx-1">
-                        <!----------------------------  section de filtre par acheter --------------------------------- -->
-                        <div class="max-w-sm mx-auto">
-                          <select id="acheter"  class="w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50">
-                            <option selected value="All" >All</option>
-                            <option value="Populair" >Populair</option>
-                            <option value="Hight Price">Hight Price</option>
-                            <option value="Low Price">Low Price</option>
-                            
-                          </select>
+
+                        <!-- Réseaux sociaux -->
+                        <div class="pt-8">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Suivez-nous</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 p-3 rounded-full text-white hover:bg-blue-700 transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="bg-blue-600 p-3 rounded-full text-white hover:bg-blue-700 transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="bg-blue-600 p-3 rounded-full text-white hover:bg-blue-700 transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire de contact -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2" for="first_name">
+                                    Prénom
+                                </label>
+                                <input type="text" id="first_name" name="first_name" 
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2" for="last_name">
+                                    Nom
+                                </label>
+                                <input type="text" id="last_name" name="last_name" 
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="email">
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="subject">
+                                Sujet
+                            </label>
+                            <select id="subject" name="subject" 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors">
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="support">Support technique</option>
+                                <option value="sales">Service commercial</option>
+                                <option value="other">Autre demande</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="message">
+                                Message
+                            </label>
+                            <textarea id="message" name="message" rows="4" 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" 
+                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                            <span>Envoyer le message</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
             </div>
-          </div>
-        
-
-          <hr class="mb-2" />
-          <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6"
-          ></div>
-        </aside>
-        <div id="coursContanaire" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6">
-        <?php
-             foreach ($data as $cours) {
-                  $tagsArray = explode(',', $cours->tags);
-                 
-                        ?>
- <article id="coursCatalogue" class="bg-white mt-4 rounded-xl shadow hover:shadow-md transition-shadow duration-300">
-  <div class="relative">
-    <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
-
-    <!-- Catégorie -->
-    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
-    <?php echo $cours->categories?>
-    </span>
-  </div>
-  
-  <div class="p-4">
-    <div class="mb-2">
-      <h3 class="text-lg font-semibold line-clamp-1"><?php echo $cours->titre?></h3></h3>
-    </div>
-    
-    <!-- Tags -->
-    <div class="flex flex-wrap gap-1 mb-2">
-    <?php foreach($tagsArray as $tag){?>
-        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded"><?php echo $tag?></span>
-      <?php }?>
-    </div>
-
-    <p class="text-gray-600 text-sm line-clamp-2 mb-3">
-    <?php echo $cours->description?>
-    </p>
-    
-    <div class="space-y-1.5 mb-4">
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <span><?php echo $cours->duree?>h</span>
-      </div>
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-        </svg>
-        <span><?php echo $cours->nomberChapitre?> chapitres</span>
-      </div>
-     
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-        <span><?php echo $cours->Etudiant?>  étudiants</span>
-      </div>
-    </div>
-
-    <div class="flex justify-between items-center">
-      <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"
-        class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
-        Read More
-      </a>
-    </div>
-  </div>
-</article>
-    <?php
-                }
-                
-            ?>
-          
-
-  
-         
-
-
         </div>
-        <nav aria-label="Pagination" class="flex justify-center mt-8">
-  <ul class="inline-flex -space-x-px">
-    <li>
-      <a href="?page=<?php echo  $currentPage - 1 ?>" 
-         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 <?php echo $currentPage === 1 ? 'opacity-50 cursor-not-allowed' : '' ?>">
-        Précédent
-      </a>
-    </li>
-    
-    <?php
-    $showEllipsis = $totalPages > 7;
-    
-    if (!$showEllipsis) {
-      for ($i = 1; $i <= $totalPages; $i++) {
-        ?>
-        <li>
-          <a href="?page=<?php echo $i ?>" 
-             class="flex items-center justify-center px-3 h-8 leading-tight border <?php echo $currentPage === $i 
-               ? 'text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
-               : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700' ?>">
-            <?php echo $i ?>
-          </a>
-        </li>
-        <?php
-      }
-    } else {
-      
-      $pageNumbers = [];
-      if ($currentPage <= 4) {
-        $pageNumbers = array_merge(range(1, 5), ['...', $totalPages]);
-      } elseif ($currentPage >= $totalPages - 3) {
-        $pageNumbers = array_merge([1, '...'], range($totalPages - 4, $totalPages));
-      } else {
-        $pageNumbers = array_merge(
-          [1, '...'],
-          range($currentPage - 1, $currentPage + 1),
-          ['...', $totalPages]
-        );
-      }
-      
-      foreach ($pageNumbers as $pageNumber) {
-        if ($pageNumber === '...') {
-          ?>
-          <li>
-            <span class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300">
-              ...
-            </span>
-          </li>
-          <?php
-        } else {
-          ?>
-          <li>
-            <a href="?page=<?php echo $pageNumber ?>" 
-               class="flex items-center justify-center px-3 h-8 leading-tight border <?php echo $currentPage === $pageNumber 
-                 ? 'text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
-                 : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700' ?>">
-              <?php echo $pageNumber ?>
-            </a>
-          </li>
-          <?php
-        }
-      }
-    }
-    ?>
-    
-    <li>
-      <a href="?page=<?php echo  $currentPage + 1 ?>" 
-         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 <?php echo $currentPage === $totalPages ? 'opacity-50 cursor-not-allowed' : '' ?>">
-        Suivant
-      </a>
-    </li>
-   </ul>
-   </nav>
-      </div>
+    </section>
     </div>
-    </body>
+    </div>
+
      <!-- footer -->
      <footer class="bg-white">
       <hr>
@@ -622,16 +518,5 @@ $data=$cours->getDataController($currentPage);
         </div>
       </div>
     </footer>
+</body>
 </html>
-
-<script
-      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-      defer></script>
-      <script src="./js/search.js"></script>
-      
-
-
-      
-
