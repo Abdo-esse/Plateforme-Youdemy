@@ -222,12 +222,12 @@ $data=$cours->getDataController($currentPage);
 
 
     <!-- Catalogue -->
-    <aside class="heading">
+    <aside class="heading mt-5">
           
           <!-----------------------------------  section de filtration du product --------------------------------- -->
                     <!------------------------------  bar de cherche  du product ----------------------- -->
           
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Products</h2>
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Catalogue</h2>
           <div class="filters flex f justify-end mb-2">
             
             <div class='flex items-center justify-center flex-row-reverse'>
@@ -281,63 +281,87 @@ $data=$cours->getDataController($currentPage);
                   $tagsArray = explode(',', $cours->tags);
                  
                         ?>
- <article id="coursCatalogue" class="bg-white mt-4 rounded-xl shadow hover:shadow-md transition-shadow duration-300">
-  <div class="relative">
-    <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
+                        <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 max-w-md">
+        <!-- Section Image -->
+        <div class="relative">
+        <img 
+    class="w-full h-48 object-cover" 
+    src="<?php echo $cours->photoCouverture ?>" 
+    alt="Photo de couverture du cours"
+/>            
+            <!-- Badge Catégorie -->
+            <span class="absolute top-3 left-3 bg-gradient-to-r from-purple-600 to-purple-400 text-white px-3 py-1 rounded-full text-sm font-medium shadow-md">
+            <?php echo $cours->categories?>
+            </span>
 
-    <!-- Catégorie -->
-    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
-    <?php echo $cours->categories?>
-    </span>
-  </div>
-  
-  <div class="p-4">
-    <div class="mb-2">
-      <h3 class="text-lg font-semibold line-clamp-1"><?php echo $cours->titre?></h3></h3>
-    </div>
-    
-    <!-- Tags -->
-    <div class="flex flex-wrap gap-1 mb-2">
-    <?php foreach($tagsArray as $tag){?>
-        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded"><?php echo $tag?></span>
+            <!-- Durée sur l'image -->
+            <span class="absolute bottom-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded-lg text-sm flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <?php echo $cours->duree?>h
+            </span>
+        </div>
+
+        <!-- Contenu -->
+        <div class="p-6">
+            <!-- Titre -->
+            <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-1">
+            <?php echo $cours->titre?>
+            </h3>
+
+            <!-- Tags avec effet glassmorphism -->
+            <div class="flex flex-wrap gap-2 mb-4">
+            <?php foreach($tagsArray as $tag){?>
+        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium"><?php echo $tag?></span>
       <?php }?>
-    </div>
+            </div>
 
-    <p class="text-gray-600 text-sm line-clamp-2 mb-3">
-    <?php echo $cours->description?>
-    </p>
-    
-    <div class="space-y-1.5 mb-4">
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <span><?php echo $cours->duree?>h</span>
-      </div>
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-        </svg>
-        <span><?php echo $cours->nomberChapitre?> chapitres</span>
-      </div>
-     
-      <div class="flex items-center text-gray-500 text-sm">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-        <span><?php echo $cours->Etudiant?>  étudiants</span>
-      </div>
-    </div>
+            <!-- Description -->
+            <p class="text-gray-600 mb-4 line-clamp-2 text-sm">
+                Apprenez les fondamentaux du design d'interface utilisateur moderne. Ce cours couvre les principes essentiels du design UI/UX.
+                <?php echo $cours->description?>            </p>
 
-    <div class="flex justify-between items-center">
-      <span class="text-blue-600 font-bold"><?php echo $cours->prix?>  €</span>
-      <a href=" ./etudiant/details.php?id=<?php echo $cours->id ?>"
-        class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg transition-colors">
-        Read More
-      </a>
-    </div>
-  </div>
-</article>
+            <!-- Statistiques -->
+            <div class="space-y-2 mb-6">
+                <!-- Chapitres -->
+                <div class="flex items-center text-gray-500">
+                    <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm"><?php echo $cours->nomberChapitre?> chapitres</span>
+                </div>
+
+                <!-- Étudiants -->
+                <div class="flex items-center text-gray-500">
+                    <div class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm"><?php echo $cours->Etudiant?> étudiants</span>
+                </div>
+            </div>
+
+            <!-- Footer avec prix et bouton -->
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">Prix</span>
+                    <span class="text-2xl font-bold text-blue-600"><?php echo $cours->prix?>  €</span>
+                </div>
+                
+                <a href="./etudiant/details.php?id=<?php echo $cours->id ?>" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    <span>Voir plus</span>
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </article>
+
     <?php
                 }
                 
@@ -425,6 +449,8 @@ $data=$cours->getDataController($currentPage);
       </div>
     </div>
     </body>
+
+    
      <!-- footer -->
      <footer class="bg-white">
       <hr>
