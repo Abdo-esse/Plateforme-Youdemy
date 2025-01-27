@@ -62,165 +62,211 @@ $data=$cours->getDataController($currentPage);
   </head>
   <body>
 
-    <!-- header -->
-    <nav x-data="{ isOpen: false }"
-      class="relative bg-white shadow dark:bg-gray-800">
-      <div
-        class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
-        <div class="flex items-center justify-between">
-          <a href="#"
-            class="text-2xl font-bold text-gray-800 hover:text-blue-600">
-            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" width="150" height="50">
-    <!-- Fond du logo -->
-    <rect width="200" height="60" fill="white"/>
-    
-    <!-- Symbole du livre/écran -->
-    <path d="M 40 15 
-             L 60 15 
-             L 60 45 
-             L 40 45 
-             Z" 
-          fill="#4A90E2" 
-          stroke="#2171CD" 
-          stroke-width="2"/>
-    
-    <!-- Pages/écrans qui se superposent -->
-    <path d="M 45 20 
-             L 65 20 
-             L 65 50 
-             L 45 50 
-             Z" 
-          fill="#5CA0E2" 
-          stroke="#2171CD" 
-          stroke-width="2"/>
-    
-    <!-- Texte "You" -->
-    <text x="80" y="38" 
-          font-family="Arial" 
-          font-weight="bold" 
-          font-size="20" 
-          fill="#2171CD">You</text>
-    
-    <!-- Texte "demy" -->
-    <text x="125" y="38" 
-          font-family="Arial" 
-          font-weight="bold" 
-          font-size="20" 
-          fill="#4A90E2">demy</text>
-    
-    <!-- Tagline (facultatif, supprimé pour compacité) -->
-    
-    <!-- Graduation cap icon -->
-    <path d="M 170 25 
-             L 180 20 
-             L 190 25 
-             L 180 30 
-             Z 
-             M 180 30 
-             L 180 35 
-             M 172 26 
-             L 172 33" 
-          fill="none" 
-          stroke="#4A90E2" 
-          stroke-width="2"/>
-</svg>
+   <nav x-data="{ isOpen: false }" 
+         class="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
+        <div class="container mx-auto px-6 py-4 md:flex md:justify-between md:items-center">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center">
+                    <svg class="w-10 h-10 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14L21 9L12 4L3 9L12 14Z" fill="white"/>
+                        <path d="M12 14L16.2426 11.7574C16.6331 11.9147 17.0037 12.0978 17.3536 12.3536L12 16L6.64645 12.3536C6.99634 12.0978 7.36686 11.9147 7.7574 11.7574L12 14Z" fill="white"/>
+                        <path d="M12 20L16.2426 17.7574C16.6331 17.9147 17.0037 18.0978 17.3536 18.3536L12 22L6.64645 18.3536C6.99634 18.0978 7.36686 17.9147 7.7574 17.7574L12 20Z" fill="white"/>
+                    </svg>
+                    <span class="text-2xl font-bold text-white">LearnHub</span>
+                </a>
 
-          </a>
+                <div class="flex md:hidden">
+                    <button @click="isOpen = !isOpen" 
+                            class="text-white focus:outline-none">
+                        <svg x-show="!isOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg x-show="isOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
-          <!-- Mobile menu button -->
-          <div class="flex lg:hidden">
-            <button x-cloak @click="isOpen = !isOpen" type="button"
-              class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
-              aria-label="toggle menu">
-              <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 8h16M4 16h16" />
-              </svg>
+            <div x-cloak 
+                 x-show="isOpen || window.innerWidth >= 768"
+                 class="md:flex md:items-center md:space-x-6 
+                        transform transition-all duration-300 
+                        absolute md:relative top-full left-0 
+                        w-full md:w-auto bg-gradient-to-r 
+                        from-indigo-600 to-purple-600 
+                        md:bg-none z-50">
+                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 p-4 md:p-0">
+                    <a href="#" 
+                       class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
+                        Courses
+                    </a>
+                    <a href="#" 
+                       class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
+                        Learning Paths
+                    </a>
+                    <a href="#" 
+                       class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
+                        Community
+                    </a>
+                </div>
 
-              <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 p-4 md:p-0">
+                    <a href="#" 
+                       class="text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors">
+                        Log In
+                    </a>
+                    <a href="#" 
+                       class="text-indigo-600 bg-white hover:bg-gray-100 px-4 py-2 rounded-full transition-colors font-semibold">
+                        Start Learning
+                    </a>
+                </div>
+            </div>
         </div>
-
-        <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-        <div x-cloak
-          :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
-          class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center text-center">
-          <div class="flex flex-col md:flex-row md:mx-6">
-            <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="index.html">Home</a>
-            <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="#">About</a>
-              <?php
-              if (isset($_SESSION["userrole"])&&$_SESSION["userrole"]=="Etudiant") {?>
-              <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-              href="./etudiant/mesCours.php">Mes cours</a>
-          </div>
-
-      <div>
-      <a href="http://localhost/Plateforme-Youdemy/App/view/auth/logout.php">
-      <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log OUT</button>
-        </a>
-     <?php } else{?>
-
-        <a href="./auth/logIn.php">
-      <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Log In</button>
-        </a>
-        <a href="./auth/signUp.php">
-        <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
-
-        </a>
-        <?php }?>
-      </div>
-        </div>
-      </div>
     </nav>
 
-    <!-- hero section -->
-    <section id="hero-section" class="h-[80vh] bg-gray-100 bg-cover bg-center relative">
-      <div class="flex items-center justify-center h-full bg-black bg-opacity-50 mb-0">
-        <div class="text-center text-white px-6">
-          <h1 class="text-4xl lg:text-5xl font-bold mb-4">Welcome to  Youdemy: Your One-Stop Online Course Platform !</h1>
-          <p class="text-lg mb-6">
-          Explorez notre gamme complète de cours éducatifs interactifs, conçus pour enrichir vos connaissances et développer vos compétences tout en favorisant un apprentissage durable et accessible à tous..
-          </p>
-          <a href="#products" class="bg-blue-500 text-white py-3 px-5 rounded-lg hover:bg-blue-600 transition duration-300">
-          get started
-          </a>
+    <!-- Hero Section with Carousel -->
+<section id="hero-section" class="h-[80vh] bg-gray-100 bg-cover bg-center relative">
+  <!-- Swiper Carousel -->
+  <div class="swiper-container h-full w-full">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800');">
+        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+          <div class="text-center text-white px-6">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Welcome to Youdemy: Your One-Stop Online Course Platform!</h1>
+            <p class="text-lg mb-6">
+              Explorez notre gamme complète de cours éducatifs interactifs, conçus pour enrichir vos connaissances et développer vos compétences tout en favorisant un apprentissage durable et accessible à tous.
+            </p>
+            <a href="#products" class="bg-blue-500 text-white py-3 px-5 rounded-lg hover:bg-blue-600 transition duration-300">
+              Get Started
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800/4A90E2');">
+        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+          <div class="text-center text-white px-6">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Learn Anytime, Anywhere</h1>
+            <p class="text-lg mb-6">
+              Access our courses from any device and learn at your own pace. Start your journey today!
+            </p>
+            <a href="#products" class="bg-purple-500 text-white py-3 px-5 rounded-lg hover:bg-purple-600 transition duration-300">
+              Explore Courses
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800/FF6F61');">
+        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+          <div class="text-center text-white px-6">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">Join Thousands of Happy Learners</h1>
+            <p class="text-lg mb-6">
+              Be part of a growing community of learners who are transforming their lives through education.
+            </p>
+            <a href="#products" class="bg-green-500 text-white py-3 px-5 rounded-lg hover:bg-green-600 transition duration-300">
+              Join Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Add Navigation Buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  const swiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    loop: true,
+    autoplay: {
+      delay: 5000, // Auto-slide every 5 seconds
+    },
+
+    // Pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
 
 
 
     <!-- Catalogue -->
-    <div class="font-[sans-serif] mt-5 bg-gray-100">
-    <div class="p-4 mx-auto lg:max-w-7xl sm:max-w-full">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-4xl font-extrabold text-gray-800">Catalogue</h2>
-            <div class="relative">
-                <input type="text" 
-                       id="keyword"
-                       oninput="searchKeyword()"
-                       placeholder="Rechercher..." 
-                       class="w-64 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                <svg class="w-5 h-5 absolute right-3 top-2.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
+    <aside class="heading">
+          
+          <!-----------------------------------  section de filtration du product --------------------------------- -->
+                    <!------------------------------  bar de cherche  du product ----------------------- -->
+          
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Products</h2>
+          <div class="filters flex f justify-end mb-2">
+            
+            <div class='flex items-center justify-center flex-row-reverse'>
+              <form action="" class="relative mx-auto flex    ">
+                  <input type="search"  oninput="searchKeyword()" class="text-xs border-none peer cursor-pointer relative z-10 h-[36px] w-10 rounded-lg border bg-transparent  pr-6 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"  placeholder="Typing..."/>
+                  <button class="gap-x-1.5  rounded-md bg-white h-[36px] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300  hover:bg-gray-50 absolute top-0 right-0 bottom-0   w-10 px-3  bg-slate-300 rounded-lg peer-focus:relative peer-focus:rounded-l-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50" >
+                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+                      </svg>
+                  </button>
+              </form>
             </div>
-        </div>
-        <hr>
+                    <!-----------------------------------  filter par categorie--------------------------------- -->
+            <div class="relative inline-block text-left mx-1">
+                        <!----------------------------  button de filtre par caregore --------------------------------- -->
+                        <div class="max-w-sm mx-auto">
+                          <!-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label> -->
+                          <select id="catégorie"  class="w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50">
+                            <option selected value="All" >All</option>
+                            <option value="Électroniques" >elctronique</option>
+                            <option value="Maison">Maison</option>
+                            <option value="Mode">Mode</option>
+                            
+                          </select>
+                        </div>
+            </div>
+                   <!-----------------------------------  filter par acheter--------------------------------- -->
+            <div class="relative inline-block text-left mx-1">
+                        <!----------------------------  section de filtre par acheter --------------------------------- -->
+                        <div class="max-w-sm mx-auto">
+                          <select id="acheter"  class="w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50">
+                            <option selected value="All" >All</option>
+                            <option value="Populair" >Populair</option>
+                            <option value="Hight Price">Hight Price</option>
+                            <option value="Low Price">Low Price</option>
+                            
+                          </select>
+                        </div>
+            </div>
+          </div>
+        
+
+          <hr class="mb-2" />
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6"
+          ></div>
+        </aside>
         <div id="coursContanaire" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-xl:gap-4 gap-6">
         <?php
              foreach ($data as $cours) {
@@ -291,7 +337,7 @@ $data=$cours->getDataController($currentPage);
           
 
   
-
+         
 
 
         </div>
