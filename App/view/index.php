@@ -146,7 +146,7 @@ $data=$cours->getDataController($currentPage);
       </div>
 
       <!-- Slide 2 -->
-      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800/4A90E2');">
+      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/8b/98/30/8b983021b3d64392da92ba5a18e3226c.jpg');">
         <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div class="text-center text-white px-6">
             <h1 class="text-4xl lg:text-5xl font-bold mb-4">Learn Anytime, Anywhere</h1>
@@ -161,7 +161,7 @@ $data=$cours->getDataController($currentPage);
       </div>
 
       <!-- Slide 3 -->
-      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x800/FF6F61');">
+      <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/55/7c/64/557c64034ecc52a10522dd77a80c8700.jpg');">
         <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div class="text-center text-white px-6">
             <h1 class="text-4xl lg:text-5xl font-bold mb-4">Join Thousands of Happy Learners</h1>
@@ -178,10 +178,6 @@ $data=$cours->getDataController($currentPage);
 
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-
-    <!-- Add Navigation Buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 </section>
 
@@ -224,7 +220,7 @@ $data=$cours->getDataController($currentPage);
             
             <div class='flex items-center justify-center flex-row-reverse'>
               <form action="" class="relative mx-auto flex    ">
-                  <input type="search"  oninput="searchKeyword()" class="text-xs border-none peer cursor-pointer relative z-10 h-[36px] w-10 rounded-lg border bg-transparent  pr-6 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"  placeholder="Typing..."/>
+                  <input type="search" id="keyword" oninput="searchKeyword()" class="text-xs border-none peer cursor-pointer relative z-10 h-[36px] w-10 rounded-lg border bg-transparent  pr-6 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"  placeholder="Typing..."/>
                   <button class="gap-x-1.5  rounded-md bg-white h-[36px] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300  hover:bg-gray-50 absolute top-0 right-0 bottom-0   w-10 px-3  bg-slate-300 rounded-lg peer-focus:relative peer-focus:rounded-l-none">
                       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50" >
                       <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
