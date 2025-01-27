@@ -8,10 +8,28 @@ if ( $_SESSION["userrole"]!="Administrateur") {
    exit(); 
 }
      require __DIR__ . '/../../../../vendor/autoload.php'; 
+
     use App\controller\CategorieC;
 
  $categories= new CategorieC();
  $_SESSION["categories"]=$categories->readCategorieController();
+
+use App\controller\PaginationController;
+$cours=new PaginationController('categories',6);
+$totalPages=$cours->totalPagesdynamique();
+if(isset($_GET["page"])){
+  if (!is_numeric($_GET["page"]) || $_GET["page"] < 1 ||$_GET["page"]> $totalPages) {
+      $currentPage=1;
+  }else{
+    $currentPage=$_GET["page"];
+  }
+   
+ } 
+ else{
+  $currentPage=1;
+ }
+$data=$cours->getDatadynamiqueController($currentPage);
+
 
 ?>
 
@@ -113,7 +131,7 @@ if ( $_SESSION["userrole"]!="Administrateur") {
         </thead>
         <tbody>
         <?php
-             foreach ($_SESSION["categories"] as $categorie) {
+             foreach ($data as $categorie) {
                 if ($categorie->dateDelete == null) {
                     ?>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">

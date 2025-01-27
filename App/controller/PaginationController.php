@@ -19,8 +19,14 @@ class PaginationController
     public function getDataController($page){
        return  $this->paginationModel->getData($page);
     }
+    public function getDatadynamiqueController($page){
+       return  $this->paginationModel->getDatadynamique($page);
+    }
     public function totalPages(){
        return $this->paginationModel->getTotalPages();
+    }
+    public function totalPagesdynamique(){
+       return $this->paginationModel->getTotalPagesdynamique();
     }
     
 

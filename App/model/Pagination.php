@@ -26,8 +26,17 @@ class Pagination  {
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return  $result['total'];
     }
+    public function getTotal(){
+        $conn = Connexion::connexion();
+        $query = $conn->prepare("SELECT COUNT(id) as total 
+        FROM {$this->table}
+          where dateDelete IS NULL ");
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return  $result['total'];
+    }
 
-    // Récupérer les données paginées
+    // Récupérer les données paginées dans cours 
     public function getData( $page) {
         $conn = Connexion::connexion();
         $debut = ($page - 1) * $this->nbrElementPerPage;
@@ -53,4 +62,24 @@ class Pagination  {
         $totalCount = $this->getTotalCount();
         return  ceil($totalCount / $this->nbrElementPerPage);
     }
+    // Obtenir le nombre total de pages
+    public function getTotalPagesdynamique() {
+        $totalCount = $this->getTotal();
+        return  ceil($totalCount / $this->nbrElementPerPage);
+    }
+
+
+     // Récupérer les données paginées dans cours 
+     public function getDatadynamique( $page) {
+        $conn = Connexion::connexion();
+        $debut = ($page - 1) * $this->nbrElementPerPage;
+        $query = $conn->prepare("SELECT *
+        from {$this->table}
+            ORDER BY id LIMIT :offset, :nbr_element");
+        $query->bindValue(':nbr_element', $this->nbrElementPerPage, PDO::PARAM_INT);
+        $query->bindValue(':offset', $debut, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }
