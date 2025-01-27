@@ -15,7 +15,7 @@ if ( $_SESSION["userrole"]!="Administrateur") {
  $_SESSION["categories"]=$categories->readCategorieController();
 
 use App\controller\PaginationController;
-$cours=new PaginationController('categories',6);
+$cours=new PaginationController('categories',7);
 $totalPages=$cours->totalPagesdynamique();
 if(isset($_GET["page"])){
   if (!is_numeric($_GET["page"]) || $_GET["page"] < 1 ||$_GET["page"]> $totalPages) {
@@ -155,6 +155,79 @@ $data=$cours->getDatadynamiqueController($currentPage);
             ?>
         </tbody>
     </table>
+    <nav aria-label="Pagination" class="flex justify-center mt-8">
+  <ul class="inline-flex -space-x-px">
+    <li>
+      <a href="?page=<?php echo  $currentPage - 1 ?>" 
+         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 <?php echo $currentPage === 1 ? 'opacity-50 cursor-not-allowed' : '' ?>">
+        Précédent
+      </a>
+    </li>
+    
+    <?php
+    $showEllipsis = $totalPages > 7;
+    
+    if (!$showEllipsis) {
+      for ($i = 1; $i <= $totalPages; $i++) {
+        ?>
+        <li>
+          <a href="?page=<?php echo $i ?>" 
+             class="flex items-center justify-center px-3 h-8 leading-tight border <?php echo $currentPage === $i 
+               ? 'text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+               : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700' ?>">
+            <?php echo $i ?>
+          </a>
+        </li>
+        <?php
+      }
+    } else {
+      
+      $pageNumbers = [];
+      if ($currentPage <= 4) {
+        $pageNumbers = array_merge(range(1, 5), ['...', $totalPages]);
+      } elseif ($currentPage >= $totalPages - 3) {
+        $pageNumbers = array_merge([1, '...'], range($totalPages - 4, $totalPages));
+      } else {
+        $pageNumbers = array_merge(
+          [1, '...'],
+          range($currentPage - 1, $currentPage + 1),
+          ['...', $totalPages]
+        );
+      }
+      
+      foreach ($pageNumbers as $pageNumber) {
+        if ($pageNumber === '...') {
+          ?>
+          <li>
+            <span class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300">
+              ...
+            </span>
+          </li>
+          <?php
+        } else {
+          ?>
+          <li>
+            <a href="?page=<?php echo $pageNumber ?>" 
+               class="flex items-center justify-center px-3 h-8 leading-tight border <?php echo $currentPage === $pageNumber 
+                 ? 'text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+                 : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700' ?>">
+              <?php echo $pageNumber ?>
+            </a>
+          </li>
+          <?php
+        }
+      }
+    }
+    ?>
+    
+    <li>
+      <a href="?page=<?php echo  $currentPage + 1 ?>" 
+         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 <?php echo $currentPage === $totalPages ? 'opacity-50 cursor-not-allowed' : '' ?>">
+        Suivant
+      </a>
+    </li>
+   </ul>
+   </nav>
 </div>
 
 
