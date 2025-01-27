@@ -90,8 +90,11 @@ if ( $_SESSION["userrole"]!="Enseignant") {
                         ?>
  <article class="bg-white rounded-xl shadow hover:shadow-md transition-shadow duration-300">
   <div class="relative">
-    <iframe class="w-full h-40 object-cover rounded-t-xl" src="<?php echo $cours->photoCouverture?>" frameborder="0"></iframe>
-
+  <img 
+    class="w-full h-48 object-cover" 
+    src="<?php echo $cours->photoCouverture ?>" 
+    alt="Photo de couverture du cours"
+/>        
    
     <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
     <?php echo $cours->categories?>
