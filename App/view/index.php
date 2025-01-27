@@ -138,7 +138,7 @@ $data=$cours->getDataController($currentPage);
             <p class="text-lg mb-6">
               Explorez notre gamme complète de cours éducatifs interactifs, conçus pour enrichir vos connaissances et développer vos compétences tout en favorisant un apprentissage durable et accessible à tous.
             </p>
-            <a href="#products" class="bg-blue-500 text-white py-3 px-5 rounded-lg hover:bg-blue-600 transition duration-300">
+            <a href="./auth/signUp.php" class="bg-blue-500 text-white py-3 px-5 rounded-lg hover:bg-blue-600 transition duration-300">
               Get Started
             </a>
           </div>
@@ -153,7 +153,7 @@ $data=$cours->getDataController($currentPage);
             <p class="text-lg mb-6">
               Access our courses from any device and learn at your own pace. Start your journey today!
             </p>
-            <a href="#products" class="bg-purple-500 text-white py-3 px-5 rounded-lg hover:bg-purple-600 transition duration-300">
+            <a href="./auth/signUp.php" class="bg-purple-500 text-white py-3 px-5 rounded-lg hover:bg-purple-600 transition duration-300">
               Explore Courses
             </a>
           </div>
@@ -168,7 +168,7 @@ $data=$cours->getDataController($currentPage);
             <p class="text-lg mb-6">
               Be part of a growing community of learners who are transforming their lives through education.
             </p>
-            <a href="#products" class="bg-green-500 text-white py-3 px-5 rounded-lg hover:bg-green-600 transition duration-300">
+            <a href="./auth/signUp.php" class="bg-green-500 text-white py-3 px-5 rounded-lg hover:bg-green-600 transition duration-300">
               Join Now
             </a>
           </div>
