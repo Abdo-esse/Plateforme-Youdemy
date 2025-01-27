@@ -105,13 +105,23 @@ $data=$cours->getDataController($currentPage);
                        class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
                         About
                     </a>
-                    <a href="#" 
+                    <?php 
+                    if (isset($_SESSION["userrole"])&&$_SESSION["userrole"]=="Etudiant") {?>
+                    <a href="./etudiant/mesCours.php" 
                        class="text-white hover:bg-white/20 px-3 py-2 rounded-md transition-colors">
-                        Community
+                        Mes cours
                     </a>
+                    <?php } ?>
                 </div>
 
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 p-4 md:p-0">
+                <?php 
+                    if (isset($_SESSION["userrole"])&&$_SESSION["userrole"]=="Etudiant") {?>
+                    <a href="./auth/logout.php" 
+                       class="text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors">
+                        Log out
+                    </a>
+                    <?php } else {?>
                     <a href="./auth/logIn.php" 
                        class="text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full transition-colors">
                         Log In
@@ -120,6 +130,8 @@ $data=$cours->getDataController($currentPage);
                        class="text-indigo-600 bg-white hover:bg-gray-100 px-4 py-2 rounded-full transition-colors font-semibold">
                         Start Learning
                     </a>
+                    <?php }?>
+
                 </div>
             </div>
         </div>
