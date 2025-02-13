@@ -32,9 +32,9 @@ class Signup
             header("location: ../../view/auth/signUp.php");
             exit();
         }
-        if(Validation::validationUsername($this->nom)==false)
+        if(!Validation::validationUsername($this->nom))
         {
-            // echo "invalid name !";
+            
             $_SESSION["errorname"] = "invalid name !";
 
             header("location: ../../view/auth/signUp.php");
